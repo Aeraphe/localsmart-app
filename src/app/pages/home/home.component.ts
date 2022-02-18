@@ -16,20 +16,20 @@ export class HomeComponent implements OnInit,AfterViewInit  {
 
   ngOnInit(): void {
     
-   
+    this.toogleAppHeader()
   }
 
   ngAfterViewInit() {
     console.log(this.divPhotoEl.nativeElement.style.setProperty('--bg-path','url("../../../assets/photos/teste.jfif")'));
   }
 
-  closeHeader = () => {
+  toogleAppHeader = () => {
     if(this.touch){
-      this.headerService.toogle();
+      this.headerService.open();
       this.touch = false;
 
       setTimeout(() => {
-        this.headerService.toogle();
+        this.headerService.close();
         this.touch = true;
       }, 5000);
     }
