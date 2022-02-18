@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "localsmart-app"
+  },
+  "targets": {
+    "localsmart-app": {
+      "hosting": {
+        "smart-adv": [
+          "localsmart-app"
+        ]
+      }
+    }
+  }
+}

@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "smart-adv:build:production",
+            "firebaseProject": "localsmart-app",
+            "firebaseHostingSite": "localsmart-app"
+          }
         }
       }
     }
