@@ -1,1 +1,28 @@
-<p>home works!</p>
+<section class="home-section" (click)="closeHeader()">
+  <header class="header">
+    <app-card>
+      <div class="product">
+        <div>
+          <div class="product__title">iPhone 11</div>
+          <p class="product__subtitle">Pro Max</p>
+          <p class="product__subtitle">R$ 15.000,00</p>
+        </div>
+        <div class="product__details">
+          <ul>
+            <li>Memória : <span class="product__details__value">64G</span></li>
+            <li>Bateria</li>
+            <li>Bateria</li>
+          </ul>
+        </div>
+      </div>
+    </app-card>
+  </header>
+
+  <main class="main">
+    <app-card>
+      <div class="product-photo">
+        <div ngModel #photo class="product-photo__img"></div>
+      </div>
+    </app-card>
+  </main>
+</section>
