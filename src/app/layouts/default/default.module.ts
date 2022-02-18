@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DefaultComponent } from './default.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from 'src/app/layouts/default/header/header.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -10,7 +11,8 @@ import { HeaderComponent } from 'src/app/layouts/default/header/header.component
   declarations: [DefaultComponent,HeaderComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ]
 })
 export class DefaultModule { }
