@@ -1,0 +1,88 @@
+@import "../../../scss/variables";
+
+:host {
+  position: relative;
+}
+.header {
+
+
+  display: none;
+  width: 100%;
+  &__container {
+    display: flex;
+    position: relative;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+
+    background-color: $color-primary;
+  }
+
+  &__mobile-btn {
+  }
+  &__title {
+    width: 70%;
+    height: 100%;
+
+    &__container {
+      height: 100%;
+    }
+
+    &__text {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      font-weight: 700;
+      color: $color-white;
+    }
+  }
+}
+
+.open {
+  display: block;
+  animation-name: slide-in;
+  animation-duration: 700ms;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  height: 5rem;
+}
+
+@keyframes slide-in {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 5rem;
+    opacity: 1;
+  }
+}
+
+.close {
+  display: block;
+
+  animation-name: slide-out;
+  animation-duration: 1000ms;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  height: 0px;
+  margin-top: -100px;
+
+}
+
+@keyframes slide-out {
+  from {
+    height: 5rem;
+    opacity: 1;
+    margin-top: 0px;
+  }
+  to {
+    height: 0px;
+    opacity: 0;
+    margin-top: -100px;
+   
+    
+  }
+}
