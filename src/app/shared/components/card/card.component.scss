@@ -1,10 +1,15 @@
 .card {
+  border: 2px solid #fff;
+  padding: 3px;
     box-shadow: 0.5rem 0.5rem 2rem rgba($color: #000000, $alpha: 0.5);
     border-radius: 5px;
     height: 100%;
     width: 100%;
-    background-color: #fff;
     overflow: hidden;
- 
+    background-color: #fff;
+    &__body{
+      height: 100%;
+      width: 100%;
+    }
   }
   
