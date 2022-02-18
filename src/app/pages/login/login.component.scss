@@ -1,0 +1,81 @@
+@import "../../scss/variables";
+:host {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+}
+
+.login-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__container {
+    transform: translateY(-40%);
+  }
+}
+.card-content {
+  height: 100%;
+  width: 26rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: rgba($color-black, 0.9);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 22rem;
+  width: 100%;
+  background-color: orange;
+  border-radius: 3px;
+  padding: 0 2rem;
+}
+.form-control {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  height: 100%;
+  width: 100%;
+  margin-top: 1.5rem;
+
+  &__label {
+    font-size: 2rem;
+    color: $color-white;
+    font-weight: 500;
+  }
+}
+
+.control-input {
+  margin: 0px;
+  padding: 0px;
+  height: 3rem;
+  min-width: 70px;
+}
+
+.btn {
+  margin-top: 2rem;
+  height: 27px;
+  width: 80%;
+  margin: 2rem auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 15px rgba($color-black, 0.5);
+  }
+
+  &:active {
+    transform: translateY(0px);
+    box-shadow: 0 1px 5px rgba($color-black, 0.5);
+  }
+}

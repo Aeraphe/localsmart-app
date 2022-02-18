@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class HeaderNavService {
-  private headerNavState = false;
+  private headerNavState = true;
 
   private subject = new BehaviorSubject<Boolean>(this.headerNavState);
 
@@ -13,8 +13,13 @@ export class HeaderNavService {
 
   constructor() {}
 
-  toogle = (): void => {
-    this.headerNavState = !this.headerNavState;
+  open = (): void => {
+    this.headerNavState = true;
+    this.subject.next(this.headerNavState);
+  };
+
+  close = (): void => {
+    this.headerNavState =false;
     this.subject.next(this.headerNavState);
   };
 
