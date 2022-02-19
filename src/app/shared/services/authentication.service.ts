@@ -1,23 +1,41 @@
 import { Injectable } from '@angular/core';
-import firebase from 'firebase/compat/app';
+import {
+  Auth,
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  User,
+} from 'firebase/auth';
+import { Observable, Subject } from 'rxjs';
+
+import { FirebaseAppService } from './firebase-app.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor() {}
+  private sub: Subject<User | null> = new Subject();
+  private user$: Observable<User | null> = this.sub.asObservable();
+  private auth: Auth;
+
+  constructor(private firebaseApp: FirebaseAppService) {
+    let app = firebaseApp.getFirebaseApp();
+    this.auth = getAuth(app);
+  }
 
   loginFirebase = async (email: string, pass: string) => {
     try {
-      const logData = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, pass);
-      if (logData.user) {
-        const token = (await logData.user.getIdTokenResult()).token;
-        const expirationTime = (await logData.user.getIdTokenResult())
+      const userCredential = await signInWithEmailAndPassword(
+        this.auth,
+        email,
+        pass
+      );
+      if (userCredential.user) {
+        const token = (await userCredential.user.getIdTokenResult()).token;
+        const expirationTime = (await userCredential.user.getIdTokenResult())
           .expirationTime;
       }
-      return { status: true, data: logData };
+      return { status: true, data: userCredential.user };
     } catch (error) {
       return { status: false, error: error };
     }
@@ -25,35 +43,14 @@ export class AuthenticationService {
 
   logoutFirebase = async () => {
     try {
-      await firebase.auth().signOut();
+      await signOut(this.auth);
     } catch (error) {
       console.error(error);
     }
   };
 
-  createAccount = async (data: any) => {
-    try {
-      const response = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(data.email, data.password);
-      await firebase.auth().currentUser?.updateProfile({
-        displayName: data.name,
-      });
-      if (response.user) {
-        const token = (await response.user.getIdTokenResult()).token;
-        const expirationTime = (await response.user.getIdTokenResult())
-          .expirationTime;
-      }
-
-      return response;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  getCurrentUser = () => {
-    return firebase.auth().currentUser
-      ? firebase.auth().currentUser
-      : undefined;
+  getCurrentUser = (): Observable<User | null> => {
+    this.sub.next(this.auth.currentUser);
+    return this.user$;
   };
 }
