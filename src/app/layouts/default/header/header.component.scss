@@ -37,7 +37,17 @@
       color: $color-white;
     }
   }
+  &__login{
+    padding-right: .5rem;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover{
+      transform: scale(1.1);
+     
+    }
+  }
 }
+
 
 .open {
   display: block;
