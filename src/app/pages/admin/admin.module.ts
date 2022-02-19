@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { UploadManagerComponent } from './upload-manager/upload-manager.component';
 import { RouterModule } from '@angular/router';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +12,9 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
   declarations: [AdminComponent,UploadManagerComponent, UploadTaskComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

@@ -8,6 +8,7 @@ import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 
 import { environment } from '../environments/environment';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,8 @@ import { environment } from '../environments/environment';
     DefaultModule,
     PagesModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [AppComponent],
 })
