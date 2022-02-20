@@ -1,0 +1,85 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+@import "../../../scss/icons/font-awasome/scss/fontawesome.scss";
+@import "../../../scss/icons/font-awasome/scss/solid.scss";
+
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.nav {
+  background-color: $color-black;
+  display: block;
+  width: 0;
+  height: 100%;
+  padding-top: 50px;
+  transition: all 3s ease-in;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1.5rem;
+    @include line-bottom-dark;
+
+    &__user {
+      height: 35px;
+
+      &__icon {
+        font-size: 3.9rem;
+      }
+
+      &__wellcome {
+        padding: 1rem;
+        &__text {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.open {
+  animation-name: openNav;
+  animation-duration: 0.5s;
+
+  display: block;
+  width: 75%;
+}
+
+.close {
+
+display: none;
+  animation: closeNav .5s ease;
+}
+
+@keyframes openNav {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 75%;
+    opacity: 100%;
+  }
+}
+
+@keyframes closeNav {
+    0% {
+      width: 75%;
+      opacity: 100%;
+    }
+    100% {
+      width: 0;
+      opacity: 0;
+    }
+  }

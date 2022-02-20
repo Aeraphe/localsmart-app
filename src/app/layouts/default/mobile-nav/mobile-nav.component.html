@@ -1,1 +1,13 @@
-<p>mobile-nav works!</p>
+<div class="nav" (swipeleft)="closeNav()" [ngClass]="{ open: navToogle, close: !navToogle }">
+  <div class="nav__container">
+    <header class="nav__header">
+      <div class="nav__header__user">
+        <i class="fa-solid fa-circle-user nav__header__user__icon"></i>
+      </div>
+      <div class="nav__header__user__wellcome">
+        <span class="nav__header__user__wellcome__text">Seja Bem Vindo!!</span>
+      </div>
+    </header>
+    <nav class="nav__list"></nav>
+  </div>
+</div>
