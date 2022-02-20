@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HandburgerMenuService } from '../../../shared/services/handburger-menu.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { HandburgerMenuService } from '../../../shared/services/handburger-menu.
 export class MobileNavComponent implements OnInit {
   navToogle = false;
 
-  constructor(private handBurgerService: HandburgerMenuService) {
+  constructor(
+    private handBurgerService: HandburgerMenuService,
+    private router: Router
+  ) {
     let clickHandBurger$ = this.handBurgerService.getHandBurgerClick();
     clickHandBurger$.subscribe((click) => {
       console.log(click);
@@ -22,5 +26,11 @@ export class MobileNavComponent implements OnInit {
   closeNav = () => {
     this.navToogle = false;
     this.handBurgerService.onClickHandBurger(false);
+  };
+
+  onClick = (route: string) => {
+    this.handBurgerService.onClickHandBurger(false);
+    this.router.navigate([route]);
+    
   };
 }
