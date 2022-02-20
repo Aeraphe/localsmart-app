@@ -16,8 +16,9 @@
   
 }
 
+@import '../../../scss/mixins';
 .container{
-    padding: 1.3rem;
+    @include content-paddings;
     height: auto;
     width: 100%;
   
