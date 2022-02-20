@@ -1,5 +1,8 @@
 @import "../../../scss/variables";
 @import "../../../scss//typografy";
+@import "../../../scss/icons/font-awasome/scss/fontawesome.scss";
+@import "../../../scss/icons/font-awasome/scss/solid.scss";
+
 
 :host {
   position: relative;
@@ -38,6 +41,8 @@
   }
   &__login {
     padding-right: 0.5rem;
+    font-size: 1.5rem;
+    color: $color-white;
     cursor: pointer;
     transition: all 0.3s ease;
     &:hover {
