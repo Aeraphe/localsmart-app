@@ -10,3 +10,11 @@
 @mixin line-bottom-dark {
     border-bottom: 1px solid rgba($color: #000000, $alpha: .3);
 }
+
+@mixin line-bottom-light {
+    border-bottom: 1px solid rgba($color: #ffffff, $alpha: .3);
+}
+
+@mixin line-bottom-smooth {
+    border-bottom: 1px solid rgba($color: #ffffff, $alpha: .1);
+}
