@@ -1,4 +1,7 @@
 @import "../../scss/variables";
+@import "../../scss/typografy";
+@import "../../scss/components";
+
 :host {
   height: 100%;
   width: 100%;
@@ -23,10 +26,12 @@
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 7px;
-  font-weight: 600;
-  color: rgba($color-black, 0.9);
+  display: flex;
+  align-items: center;
+  min-height: 5rem;
+  padding-left: 0.7rem;
+
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
 }
 
 .form {
@@ -35,24 +40,9 @@
   align-items: center;
   min-height: 22rem;
   width: 100%;
-  background-color: orange;
+
   border-radius: 3px;
   padding: 0 2rem;
-}
-.form-control {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  height: 100%;
-  width: 100%;
-  margin-top: 1.5rem;
-
-  &__label {
-    font-size: 2rem;
-    color: $color-white;
-    font-weight: 500;
-  }
 }
 
 .control-input {
@@ -60,22 +50,4 @@
   padding: 0px;
   height: 3rem;
   min-width: 70px;
-}
-
-.btn {
-  margin-top: 2rem;
-  height: 27px;
-  width: 80%;
-  margin: 2rem auto;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 15px rgba($color-black, 0.5);
-  }
-
-  &:active {
-    transform: translateY(0px);
-    box-shadow: 0 1px 5px rgba($color-black, 0.5);
-  }
 }

@@ -2,14 +2,14 @@
   <div class="login-section__container">
     <app-card>
       <div class="card-content">
-        <div class="title">Login</div>
-        <form class="form">
+        <h3 class=" heading-3 title">Login</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
           <div class="form-control">
             <label class="form-control__label" for="email">e-mail:</label>
             <input
               class="control-input control-input--email"
               type="email"
-              name="email"
+              formControlName="email"
               id="email"
             />
           </div>
@@ -19,13 +19,13 @@
             <input
               class="control-input control-input--password"
               type="password"
-              name="password"
+              formControlName="password"
               id="password"
             />
           </div>
 
           <div class="form-control">
-            <button class="btn" type="submit">Logar</button>
+            <button class="btn" [disabled]="!loginForm.valid" type="submit">Logar</button>
           </div>
         </form>
       </div>
