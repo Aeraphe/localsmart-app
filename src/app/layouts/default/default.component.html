@@ -1,3 +1,7 @@
 <app-mobile-nav></app-mobile-nav>
+<div
+  class="overlay"
+  [ngClass]="{ opened: overlayState, closed: !overlayState }"
+></div>
 <app-header></app-header>
 <router-outlet></router-outlet>
