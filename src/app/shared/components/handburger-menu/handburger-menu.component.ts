@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HandburgerMenuService } from '../../services/handburger-menu.service';
+import { OverlayService } from "../../services/overlay.service";
 
 @Component({
   selector: 'app-handburger-menu',
@@ -9,9 +10,10 @@ import { HandburgerMenuService } from '../../services/handburger-menu.service';
 export class HandburgerMenuComponent implements OnInit {
   clickState = false;
 
-  constructor(private clickService: HandburgerMenuService) {
+  constructor(private clickService: HandburgerMenuService,private appOverlayService:OverlayService) {
     this.clickService.getHandBurgerClick().subscribe((click) => {
       this.clickState = click;
+      this.appOverlayService.changeOverlayState(click);
     });
   }
 
