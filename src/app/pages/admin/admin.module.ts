@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent,UploadManagerComponent, UploadTaskComponent],
+  declarations: [AdminComponent,UploadManagerComponent, UploadTaskComponent, ProductListComponent],
   imports: [
     CommonModule,
     RouterModule,
