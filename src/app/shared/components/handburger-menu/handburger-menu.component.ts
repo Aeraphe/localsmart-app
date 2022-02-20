@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { HandburgerMenuService } from "../../services/handburger-menu.service";
+import { HandburgerMenuService } from '../../services/handburger-menu.service';
 
 @Component({
   selector: 'app-handburger-menu',
   templateUrl: './handburger-menu.component.html',
-  styleUrls: ['./handburger-menu.component.scss']
+  styleUrls: ['./handburger-menu.component.scss'],
 })
 export class HandburgerMenuComponent implements OnInit {
-  private clickState = false;
+  clickState = false;
 
-  constructor(private clickService:HandburgerMenuService) {
-
-   }
-
-  ngOnInit(): void {
+  constructor(private clickService: HandburgerMenuService) {
+    this.clickService.getHandBurgerClick().subscribe((click) => {
+      this.clickState = click;
+    });
   }
 
-  onClick = ()=>{
+  ngOnInit(): void {}
+
+  onClick = () => {
     this.clickState = !this.clickState;
     this.clickService.onClickHandBurger(this.clickState);
-  }
-
+  };
 }
