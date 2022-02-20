@@ -1,0 +1,45 @@
+.form-control {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 1.5rem;
+
+  &__label {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+
+.control-input {
+  margin: 0px;
+  padding: 0px;
+  height: 3rem;
+  min-width: 100%;
+}
+
+.control-select{
+  margin: 0px;
+  padding: 0px;
+  height: 3rem;
+  min-width: 100%;
+}
+
+.btn {
+  margin-top: 2rem;
+  height: 27px;
+  width: 100%;
+  margin: 2rem auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 15px rgba($color-black, 0.5);
+  }
+
+  &:active {
+    transform: translateY(0px);
+    box-shadow: 0 1px 5px rgba($color-black, 0.5);
+  }
+}
