@@ -1,1 +1,52 @@
-<p>upload-task works!</p>
+<section class="upload-section">
+  <div class="container">
+    <app-card>
+      <div class="title">
+        <h4 class="heading-4">Cadastrar Produto</h4>
+      </div>
+      <form class="form" [formGroup]="uploadForm" (submit)="onSubmit()">
+        <div class="form-control">
+          <label class="form-control__label" for="category">tipo:</label>
+          <select
+            class="control-select"
+            formControlName="category"
+            id="category"
+          >
+            <option selected value="phone">Celular</option>
+            <option value="celular_acessorios">Acessórios</option>
+            <option value="notebook">Notebook</option>
+          </select>
+        </div>
+
+        <div class="form-control">
+          <label class="form-control__label" for="name">nome:</label>
+          <input
+            class="control-input control-input--email"
+            type="text"
+            formControlName="name"
+            id="name"
+          />
+        </div>
+
+        <div class="form-control">
+          <label class="form-control__label" for="price">preço:</label>
+          <input
+            class="control-input control-input--email"
+            type="text"
+            formControlName="price"
+            id="price"
+          />
+        </div>
+        <div class="form-control">
+          <label class="form-control__label" for="price">foto:</label>
+          <input type="file" (change)="onFileChange($event)" id="" />
+        </div>
+        <div class="form-control">
+          <button class="btn" type="submit" [disabled]="!uploadForm.valid">
+            Cadastrar
+          </button>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</section>
