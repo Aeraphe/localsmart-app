@@ -1,15 +1,25 @@
 import { Injectable } from '@angular/core';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { FirebaseStorageService } from './firebase-storage.service';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDoc,
+  getDocs,
+  doc,
+  query,
+  where,
+  DocumentData,
+} from 'firebase/firestore';
 
 interface Product {
-  url?: string,
-  file_name?: string,
-  category: string,
-  name: string,
-  price?: number,
-  props?: [{ name: string; value: string }],
+  url?: string;
+  file_name?: string;
+  category: string;
+  name: string;
+  price?: number;
+  props?: [{ name: string; value: string }];
 }
 
 @Injectable({
@@ -43,5 +53,16 @@ export class ProductsService {
       fileName: product.file_name,
       data: new Date(),
     });
+  };
+
+  getProducts = async () => {
+    let products:any = [];
+    let querySnapshot = await getDocs(collection(this.db, 'products'));
+
+    querySnapshot.forEach((doc) => {
+      products.push(doc.data());
+    });
+
+    return products;
   };
 }
