@@ -3,6 +3,15 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { FirebaseStorageService } from './firebase-storage.service';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
+interface Product {
+  url?: string,
+  file_name?: string,
+  category: string,
+  name: string,
+  price?: number,
+  props?: [{ name: string; value: string }],
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,7 +21,7 @@ export class ProductsService {
 
   constructor(private storageService: FirebaseStorageService) {}
 
-  uploadProductImage = async (file: File, postData: any) => {
+  uploadProductImage = async (file: File, postData: Product) => {
     let imgRef = ref(
       this.storageService.getStorage(),
       `${this.bucketName}/${file.name}`
@@ -20,21 +29,18 @@ export class ProductsService {
 
     let snapshot = await uploadBytes(imgRef, file);
     let url = await getDownloadURL(snapshot.ref);
-    this.handleSaveImageDataOnDb(postData, url, file.name);
+    let data: Product = { ...postData, url, file_name: file.name };
+    this.handleSaveImageDataOnDb(data);
   };
 
-  private handleSaveImageDataOnDb = async (
-    postData: any,
-    url: string,
-    fileName: string
-  ) => {
+  private handleSaveImageDataOnDb = async (product: Product) => {
     const docRef = await addDoc(collection(this.db, 'products'), {
-      url,
-      category: postData?.category || 'phones',
-      name: postData?.name || 'phones',
-      price: postData?.price || 0,
-      props: postData?.props || [],
-      fileName,
+      url: product.url,
+      category: product?.category || 'phones',
+      name: product?.name || 'phones',
+      price: product?.price || 0,
+      props: product?.props || [],
+      fileName: product.file_name,
       data: new Date(),
     });
   };
