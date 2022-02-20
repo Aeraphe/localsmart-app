@@ -1,0 +1,67 @@
+@import "../../../scss/variables";
+@import "../../../scss/typografy";
+@import "../../../scss/mixins";
+@import "../../../scss/icons/font-awasome/scss/fontawesome.scss";
+@import "../../../scss/icons/font-awasome/scss/solid.scss";
+
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  padding: $content-padding;
+  @include line-bottom-light;
+}
+.product-list-section {
+  height: 100%;
+
+  margin: 5px;
+  overflow-y: scroll;
+}
+
+.list {
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: $content-padding;
+    @include line-bottom-light;
+    position: relative;
+    text-decoration: none;
+
+    align-items: flex-start;
+    &__img {
+      width: 110px;
+      height: 110px;
+    }
+
+    &__text {
+      padding-left: 1rem;
+
+      &__price {
+        margin-top: 1rem;
+      }
+
+      &__payment {
+        margin-top: 2px;
+        font-size: 1.3rem;
+        color: rgb(5, 197, 21);
+      }
+    }
+  }
+}
+
+
+.actions{
+    position: absolute;
+    top: 1rem;
+    right: .5rem;
+
+    
+
+    &__icon{
+        font-size: 2rem;
+        padding-left:2rem ;
+    }
+}
