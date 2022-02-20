@@ -31,9 +31,19 @@
     text-decoration: none;
 
     align-items: flex-start;
+    
     &__img {
       width: 110px;
       height: 110px;
+      border-radius: 7px;
+      transition: all .3s ease-in;
+
+      &:hover{
+          transform: translateY(-1px);
+          transform: scale(1.1);
+          box-shadow: 5px 5px 10px rgba($color: #fff, $alpha: .1);
+          cursor: pointer;
+      }
     }
 
     &__text {
