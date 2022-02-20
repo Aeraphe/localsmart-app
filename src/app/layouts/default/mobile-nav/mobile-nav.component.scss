@@ -92,7 +92,7 @@
 
   display: block;
   width: 60%;
-  min-width: 300px;
+  max-width: 300px;
 }
 
 .close {
@@ -107,7 +107,7 @@
   }
   100% {
     width: 60%;
-    min-width: 300px;
+    max-width: 300px;
     opacity: 100%;
   }
 }
