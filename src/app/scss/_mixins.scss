@@ -1,0 +1,8 @@
+
+@import './variables';
+@mixin content-paddings {
+    padding-top: 1rem;
+    padding-left: $content-padding;
+    padding-right: $content-padding;
+    padding-bottom: 0px;
+}
