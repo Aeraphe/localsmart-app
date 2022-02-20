@@ -9,8 +9,9 @@
   z-index: 20;
 }
 .header {
-  display: none;
+  display: block;
   width: 100%;
+  height: 5rem;
   &__container {
     display: flex;
     position: relative;
