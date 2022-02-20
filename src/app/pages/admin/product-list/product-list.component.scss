@@ -48,20 +48,23 @@
         font-size: 1.3rem;
         color: rgb(5, 197, 21);
       }
+      &__state {
+        margin-top: 1px;
+        color: yellow;
+        text-transform: uppercase;
+      }
     }
   }
 }
 
+.actions {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
 
-.actions{
-    position: absolute;
-    top: 1rem;
-    right: .5rem;
-
-    
-
-    &__icon{
-        font-size: 2rem;
-        padding-left:2rem ;
-    }
+  &__icon {
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+  
+  }
 }
