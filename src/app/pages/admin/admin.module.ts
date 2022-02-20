@@ -5,6 +5,7 @@ import { UploadManagerComponent } from './upload-manager/upload-manager.componen
 import { RouterModule } from '@angular/router';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AdminModule { }
