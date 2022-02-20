@@ -32,6 +32,7 @@
     justify-content: flex-start;
     align-items: center;
     padding: 1.5rem;
+    background-color: rgba($color: #660606, $alpha: .8);
     @include line-bottom-light;
 
     &__user {
@@ -92,7 +93,7 @@
 
   display: block;
   width: 60%;
-  max-width: 300px;
+  min-width: 300px;
 }
 
 .close {
@@ -107,7 +108,7 @@
   }
   100% {
     width: 60%;
-    max-width: 300px;
+    min-width: 300px;
     opacity: 100%;
   }
 }
