@@ -19,7 +19,7 @@
   min-width: 100%;
 }
 
-.control-select{
+.control-select {
   margin: 0px;
   padding: 0px;
   height: 3rem;
@@ -27,15 +27,18 @@
 }
 
 .btn {
-  margin-top: 2rem;
   height: 27px;
   width: 100%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   cursor: pointer;
   transition: all 0.3s ease;
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 15px rgba($color-black, 0.5);
+  }
+
+  &--gutter {
+    margin-right: 1.3rem;
   }
 
   &:active {
