@@ -1,3 +1,4 @@
+@import '../../scss/variables';
 :host {
   display: flex;
   flex-direction: column;
@@ -10,7 +11,7 @@
   display: block;
   width: 0;
   height: 0;
-  background-color: rgba( #fff, $alpha: 0.2);
+  background-color: rgba( $color-black, $alpha: 0.9);
   z-index: 17;
 }
 
