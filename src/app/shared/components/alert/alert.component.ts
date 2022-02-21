@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
 import { OverlayService } from '../../services/overlay.service';
 
@@ -9,11 +9,14 @@ import { OverlayService } from '../../services/overlay.service';
 })
 export class AlertComponent implements OnInit {
   open: boolean = false;
-  @Output() close: EventEmitter<boolean> = new EventEmitter();
+  @Input() content: string = '';
+  @Output() onConfirm: EventEmitter<boolean> = new EventEmitter(false);
 
-  constructor(private alertService: AlertService, private overlayService:OverlayService) {
+  constructor(
+    private alertService: AlertService,
+    private overlayService: OverlayService
+  ) {
     this.alertService.getAlertState().subscribe((state) => {
-      console.log(state);
       this.open = state;
       overlayService.changeOverlayState(state);
     });
@@ -22,4 +25,16 @@ export class AlertComponent implements OnInit {
   ngOnInit(): void {}
 
   handlerOpenOverlay = () => {};
+
+  cancel = () => {
+    this.open = false;
+
+    this.overlayService.changeOverlayState(false);
+  };
+
+  confirm = () => {
+
+    this.onConfirm.emit(true);
+    this.alertService.closeAlert();
+  };
 }

@@ -1,11 +1,13 @@
 @import "../../../scss/variables";
 @import "../../../scss/mixins";
+@import "../../../scss/typografy";
+@import "../../../scss/components";
 
 :host {
   height: 100%;
   width: 100%;
 }
-.modal {
+.alert {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,8 +28,40 @@
     transform: translateY(-35%);
   }
 
+  &__content {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr 1fr;
+    height: 100%;
+  }
+
   &__header {
     @include line-bottom-light;
+    padding-left: $content-padding;
     height: 3.5rem;
+    line-height: 3rem;
+    font-weight: 700;
+    background-color: $color-primary;
+    color: $color-white;
+    border-radius: 3px;
+  }
+
+  &__body {
+    height: 100%;
+
+    @include content-paddings;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    @include content-paddings;
   }
 }

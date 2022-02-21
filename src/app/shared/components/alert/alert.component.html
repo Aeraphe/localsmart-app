@@ -1,10 +1,20 @@
-<div class="modal" *ngIf="open">
-  <div class="modal__container">
+<div class="alert" *ngIf="open">
+  <div class="alert__container">
     <app-card>
-      <header class="modal__header"><span>Alerta</span></header>
-      <div class="modal__body"><ng-content></ng-content></div>
+      <div class="alert__content">
+        <header class="alert__header"><h3 class="heading-3">Alerta</h3></header>
+        <div class="alert__body">
+          <div class="alert__body__content">
+            <p class="paragraph">
+              {{ content }}
+            </p>
+          </div>
+        </div>
+        <footer class="alert__footer">
+          <button (click)="cancel()" class="btn btn--gutter">Cancelar</button>
+          <button (click)="confirm()" class="btn">Confirmar</button>
+        </footer>
+      </div>
     </app-card>
-
   </div>
 </div>
-
