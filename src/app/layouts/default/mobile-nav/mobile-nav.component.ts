@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HandburgerMenuService } from '../../../shared/services/handburger-menu.service';
 import { OveflowBodyService } from '../../../shared/services/oveflow-body.service';
+import { AuthenticationService } from '../../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-mobile-nav',
@@ -10,18 +11,32 @@ import { OveflowBodyService } from '../../../shared/services/oveflow-body.servic
 })
 export class MobileNavComponent implements OnInit {
   navToogle = false;
+  user: any;
 
   constructor(
     private handBurgerService: HandburgerMenuService,
     private overflow: OveflowBodyService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {
+    this.handleClickEventOnHandBurgerBtn();
+    this.handleUserLogin();
+  }
+
+  private handleClickEventOnHandBurgerBtn() {
     let clickHandBurger$ = this.handBurgerService.getHandBurgerClick();
     clickHandBurger$.subscribe((click) => {
       this.handleOverflowBody(click);
       this.navToogle = click;
     });
   }
+
+  private handleUserLogin = () => {
+    this.authService.monitorAuthState().subscribe((userState) => {
+      this.user = userState;
+      console.log(this.user);
+    });
+  };
 
   handleOverflowBody = (active: boolean) => {
     if (active) {
