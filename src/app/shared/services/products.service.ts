@@ -20,6 +20,8 @@ interface Product {
   name: string;
   price?: number;
   props?: [{ name: string; value: string }];
+  sold?: number;
+  condition?: number;
 }
 
 @Injectable({
@@ -51,12 +53,14 @@ export class ProductsService {
       price: product?.price || 0,
       props: product?.props || [],
       fileName: product.file_name,
+      sold: product.sold,
+      condition: product.condition,
       data: new Date(),
     });
   };
 
   getProducts = async () => {
-    let products:any = [];
+    let products: any = [];
     let querySnapshot = await getDocs(collection(this.db, 'products'));
 
     querySnapshot.forEach((doc) => {
