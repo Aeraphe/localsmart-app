@@ -10,6 +10,7 @@
       </div>
       <div class="nav__header__user__wellcome">
         <span class="nav__header__user__wellcome__text">Seja Bem Vindo!!</span>
+        <span routerLink="login" class="nav__header__user__wellcome__text">{{user?.email || 'Entrar?' }}</span>
       </div>
     </header>
     <nav class="nav__list">
