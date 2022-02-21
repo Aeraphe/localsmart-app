@@ -15,6 +15,8 @@ export class UploadTaskComponent implements OnInit {
     name: new FormControl(null, [Validators.required]),
     category: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
+    condition: new FormControl(null, [Validators.required]),
+    sold: new FormControl(0),
   });
 
   constructor(private productsService: ProductsService) {}

@@ -19,6 +19,20 @@
         </div>
 
         <div class="form-control">
+          <label class="form-control__label" for="condition"
+            >estado de conservação:</label
+          >
+          <select
+            class="control-select"
+            formControlName="condition"
+            id="condition"
+          >
+            <option selected value="0">Novo</option>
+            <option value="1">Usado</option>
+          </select>
+        </div>
+
+        <div class="form-control">
           <label class="form-control__label" for="name">nome:</label>
           <input
             class="control-input control-input--email"
