@@ -5,6 +5,7 @@ import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 
+
 registerLocaleData(localePt);
 
 @Component({
@@ -49,7 +50,8 @@ export class ProductListComponent implements OnInit {
   };
 
   deleteProduct = () => {
-    this.productService.deleteProduct(this.selectedProduct.id);
+    const {id,imgUrl} = this.selectedProduct;
+    this.productService.deleteProduct(id,imgUrl);
     this.handleGetProducts();
   };
 }
