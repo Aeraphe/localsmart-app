@@ -10,7 +10,9 @@
       </div>
       <div class="nav__header__user__wellcome">
         <span class="nav__header__user__wellcome__text">Seja Bem Vindo!!</span>
-        <span routerLink="login" class="nav__header__user__wellcome__text">{{user?.email || 'Entrar?' }}</span>
+        <span routerLink="login" class="nav__header__user__wellcome__text">{{
+          user?.email || "Entrar?"
+        }}</span>
       </div>
     </header>
     <nav class="nav__list">
@@ -22,10 +24,13 @@
         </li>
         <li (click)="onClick('login')" class="nav__list__item">
           <i class="fa-solid fa-arrow-right-to-bracket nav__list__item__icon"
-            ><span class="nav__list__item__icon__text">Login</span></i
-          >
+            ><span *ngIf="user == null" class="nav__list__item__icon__text"
+              >Login</span
+            >
+            <span *ngIf="user" class="nav__list__item__icon__text">Logout</span>
+          </i>
         </li>
-        <li (click)="onClick('admin')" class="nav__list__item">
+        <li *ngIf="user" (click)="onClick('admin')" class="nav__list__item">
           <i class="fa-solid fa-lock nav__list__item__icon"
             ><span class="nav__list__item__icon__text">Admin</span></i
           >
