@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { OveflowBodyService } from '../services/oveflow-body.service';
+import { OveflowBodyService } from './oveflow-body.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ModalService {
+export class AlertService {
   private stateSubject = new Subject();
-  private modalState$ = this.stateSubject.asObservable() as Observable<boolean>;
+  private alertState$ = this.stateSubject.asObservable() as Observable<boolean>;
   constructor(private overflowBody: OveflowBodyService) {}
 
-  getModalState = () => {
-    return this.modalState$;
+  getAlertState = () => {
+    return this.alertState$;
   };
 
-  openModal = () => {
+  openAlert = () => {
     this.stateSubject.next(true);
     this.overflowBody.activeOverflowBody();
   };
 
-  closeModal = () => {
+  closeAlert = () => {
     this.stateSubject.next(false);
     this.overflowBody.removeOverflowBody();
   };
