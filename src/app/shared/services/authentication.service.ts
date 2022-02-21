@@ -18,10 +18,14 @@ export class AuthenticationService {
   private sub: Subject<User | null> = new Subject();
   private user$: Observable<User | null> = this.sub.asObservable();
   private auth: Auth;
+  private isAuthenticated = false;
 
   constructor(private firebaseApp: FirebaseAppService) {
     let app = firebaseApp.getFirebaseApp();
     this.auth = getAuth(app);
+    this.user$.subscribe((user) => {
+      this.isAuthenticated = user ? true : false;
+    });
   }
 
   loginFirebase = async (email: string, pass: string) => {
@@ -31,11 +35,9 @@ export class AuthenticationService {
         email,
         pass
       );
-      if (userCredential.user) {
-        const token = (await userCredential.user.getIdTokenResult()).token;
-        const expirationTime = (await userCredential.user.getIdTokenResult())
-          .expirationTime;
-      }
+
+      this.isAuthenticated = userCredential.user ? true : false;
+
       return { status: true, data: userCredential.user };
     } catch (error) {
       return { status: false, error: error };
@@ -45,6 +47,7 @@ export class AuthenticationService {
   logoutFirebase = async () => {
     try {
       await signOut(this.auth);
+      this.isAuthenticated = false;
     } catch (error) {
       console.error(error);
     }
@@ -60,5 +63,9 @@ export class AuthenticationService {
     });
 
     return this.user$;
+  };
+
+  isUserAuthenticate = () => {
+    return this.isAuthenticated;
   };
 }
