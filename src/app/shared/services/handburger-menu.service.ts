@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HandburgerMenuService {
-  private subClick = new BehaviorSubject(false);
-  private click$ = this.subClick.asObservable();
+  private subClick = new Subject();
+  private click$: Observable<boolean> =
+    this.subClick.asObservable() as Observable<boolean>;
 
   constructor() {}
 
