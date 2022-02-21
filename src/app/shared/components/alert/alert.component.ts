@@ -10,6 +10,7 @@ import { OverlayService } from '../../services/overlay.service';
 export class AlertComponent implements OnInit {
   open: boolean = false;
   @Input() content: string = '';
+  @Input() message: string = '';
   @Output() onConfirm: EventEmitter<boolean> = new EventEmitter(false);
 
   constructor(
