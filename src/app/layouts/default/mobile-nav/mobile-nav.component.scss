@@ -71,6 +71,11 @@
       padding-left: 11px;
       height: 4.5rem;
 
+      &:hover{
+        cursor: pointer;
+        background-color: #660606;
+      }
+
       &__icon {
         font-size: 1.8rem;
         transition: all 0.3s;
