@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
+  onAuthStateChanged,
 } from 'firebase/auth';
 import { Observable, Subject } from 'rxjs';
 
@@ -49,8 +50,15 @@ export class AuthenticationService {
     }
   };
 
-  getCurrentUser = (): Observable<User | null> => {
-    this.sub.next(this.auth.currentUser);
+  monitorAuthState = (): Observable<User | null> => {
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        this.sub.next(user);
+      } else {
+        this.sub.next(null);
+      }
+    });
+
     return this.user$;
   };
 }
