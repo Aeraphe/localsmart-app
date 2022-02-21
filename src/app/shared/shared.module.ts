@@ -4,11 +4,13 @@ import { HandburgerMenuComponent } from './components/handburger-menu/handburger
 import { CardComponent } from './components/card/card.component';
 import { HeaderNavService } from './services/header-nav.service';
 import { FirebaseAppService } from './services/firebase-app.service';
+import { ModalComponent } from './components/modal/modal.component';
+import { OverlayService } from './services/overlay.service';
 
 @NgModule({
-  declarations: [HandburgerMenuComponent, CardComponent],
+  declarations: [HandburgerMenuComponent, CardComponent, ModalComponent],
   imports: [CommonModule],
-  exports: [HandburgerMenuComponent, CardComponent],
-  providers:[HeaderNavService,FirebaseAppService]
+  exports: [HandburgerMenuComponent, CardComponent, ModalComponent],
+  providers: [HeaderNavService, FirebaseAppService, OverlayService],
 })
 export class SharedModule {}
