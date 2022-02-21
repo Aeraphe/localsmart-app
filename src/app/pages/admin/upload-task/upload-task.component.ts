@@ -28,6 +28,7 @@ export class UploadTaskComponent implements OnInit {
       let formData = this.uploadForm.value;
       let file = formData?.file;
       await this.productsService.uploadProductImage(file, formData);
+      this.uploadForm.reset();
     } catch (error) {
       console.error(error);
       throw new Error('File upload Error');
