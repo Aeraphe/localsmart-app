@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+  FirebaseStorage,
+} from 'firebase/storage';
 import { FirebaseStorageService } from './firebase-storage.service';
 import {
   getFirestore,
   collection,
   addDoc,
-  getDoc,
   getDocs,
+  deleteDoc,
   doc,
-  query,
-  where,
-  DocumentData,
 } from 'firebase/firestore';
 
 interface Product {
@@ -28,16 +31,17 @@ interface Product {
   providedIn: 'root',
 })
 export class ProductsService {
-  private bucketName = 'product-images';
+  private productFilesFolder = 'product-images';
+  private productColectionName = 'products';
   private db = getFirestore();
+  private storage: FirebaseStorage;
 
-  constructor(private storageService: FirebaseStorageService) {}
+  constructor(private storageService: FirebaseStorageService) {
+    this.storage = this.storageService.getStorage();
+  }
 
   uploadProductImage = async (file: File, postData: Product) => {
-    let imgRef = ref(
-      this.storageService.getStorage(),
-      `${this.bucketName}/${file.name}`
-    );
+    let imgRef = ref(this.storage, `${this.productFilesFolder}/${file.name}`);
 
     let snapshot = await uploadBytes(imgRef, file);
     let url = await getDownloadURL(snapshot.ref);
@@ -46,22 +50,27 @@ export class ProductsService {
   };
 
   private handleSaveImageDataOnDb = async (product: Product) => {
-    const docRef = await addDoc(collection(this.db, 'products'), {
-      url: product.url,
-      category: product?.category || 'phones',
-      name: product?.name || 'phones',
-      price: product?.price || 0,
-      props: product?.props || [],
-      fileName: product.file_name,
-      sold: product.sold,
-      condition: product.condition,
-      data: new Date(),
-    });
+    const docRef = await addDoc(
+      collection(this.db, this.productColectionName),
+      {
+        url: product.url,
+        category: product?.category || 'phones',
+        name: product?.name || 'phones',
+        price: product?.price || 0,
+        props: product?.props || [],
+        fileName: product.file_name,
+        sold: product.sold,
+        condition: product.condition,
+        data: new Date(),
+      }
+    );
   };
 
   getProducts = async () => {
     let products: any = [];
-    let querySnapshot = await getDocs(collection(this.db, 'products'));
+    let querySnapshot = await getDocs(
+      collection(this.db, this.productColectionName)
+    );
 
     querySnapshot.forEach((doc) => {
       products.push({ ...doc.data(), id: doc.id });
@@ -70,5 +79,23 @@ export class ProductsService {
     return products;
   };
 
-  deleteProduct = (id: string) => {};
+  deleteProduct = (id: string, fileName: string) => {
+    try {
+      let docRef = doc(this.db, this.productColectionName, id);
+
+      deleteDoc(docRef).then((resp) => {
+        this.deleteProductImage(fileName);
+      });
+    } catch (error) {
+      console.log('Error on Delete Product:', error);
+    }
+  };
+
+  deleteProductImage = (imageUrl: string) => {
+    let imageRef = ref(this.storage, imageUrl);
+
+    deleteObject(imageRef).then((resp) => {
+      console.log('delete ', resp);
+    });
+  };
 }
