@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../../shared/services/products.service';
+import { OveflowBodyService } from '../../../shared/services/oveflow-body.service';
+import { OverlayService } from '../../../shared/services/overlay.service';
 
 @Component({
   selector: 'app-upload-task',
@@ -9,6 +11,8 @@ import { ProductsService } from '../../../shared/services/products.service';
 })
 export class UploadTaskComponent implements OnInit {
   file!: File;
+
+  loaderActive = false;
 
   uploadForm = new FormGroup({
     file: new FormControl(null, [Validators.required]),
@@ -19,18 +23,31 @@ export class UploadTaskComponent implements OnInit {
     sold: new FormControl(0),
   });
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private overflowService: OveflowBodyService,
+    private OverlayService: OverlayService
+  ) {}
 
   ngOnInit(): void {}
 
   onSubmit = async () => {
     try {
+      this.loaderActive = true;
+      this.overflowService.activeOverflowBody();
+      this.OverlayService.changeOverlayState(true);
       let formData = this.uploadForm.value;
       let file = formData?.file;
       await this.productsService.uploadProductImage(file, formData);
       this.uploadForm.reset();
+      this.loaderActive = false;
+      this.overflowService.removeOverflowBody();
+      this.OverlayService.changeOverlayState(false);
     } catch (error) {
       console.error(error);
+      this.loaderActive = false;
+      this.overflowService.removeOverflowBody();
+      this.OverlayService.changeOverlayState(false);
       throw new Error('File upload Error');
     }
   };
