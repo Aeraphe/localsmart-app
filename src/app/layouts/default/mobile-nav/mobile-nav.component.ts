@@ -34,7 +34,6 @@ export class MobileNavComponent implements OnInit {
   private handleUserLogin = () => {
     this.authService.monitorAuthState().subscribe((userState) => {
       this.user = userState;
-      console.log(this.user);
     });
   };
 
