@@ -9,6 +9,9 @@
   width: 100%;
 }
 
+.container{
+  padding-bottom: 35px;
+}
 .header {
   padding: $content-padding;
   @include line-bottom-light;
@@ -17,15 +20,17 @@
   height: 100%;
 
   margin: 5px;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 .list {
+ height: 100%;
   &__item {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     padding: $content-padding;
+    
     @include line-bottom-light;
     position: relative;
     text-decoration: none;
