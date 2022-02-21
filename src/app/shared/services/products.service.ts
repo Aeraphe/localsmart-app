@@ -64,9 +64,11 @@ export class ProductsService {
     let querySnapshot = await getDocs(collection(this.db, 'products'));
 
     querySnapshot.forEach((doc) => {
-      products.push(doc.data());
+      products.push({ ...doc.data(), id: doc.id });
     });
 
     return products;
   };
+
+  deleteProduct = (id: string) => {};
 }
