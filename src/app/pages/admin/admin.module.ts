@@ -7,7 +7,8 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductListComponent } from './product-list/product-list.component';
-
+import {  MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {  MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -17,7 +18,10 @@ import { ProductListComponent } from './product-list/product-list.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatSlideToggleModule,
+    MatCheckboxModule
+    
   ]
 })
 export class AdminModule { }
