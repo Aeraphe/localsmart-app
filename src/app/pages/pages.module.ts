@@ -7,10 +7,23 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { AdminModule } from './admin/admin.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
-  declarations: [HomeComponent, NotFoundComponent, LoginComponent,  ],
-  imports: [CommonModule,SharedModule,AdminModule,FormsModule,ReactiveFormsModule],
+  declarations: [
+    HomeComponent,
+    NotFoundComponent,
+    LoginComponent,
+    ProductDetailsComponent,
+  ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    AdminModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+  ],
 })
 export class PagesModule {}
