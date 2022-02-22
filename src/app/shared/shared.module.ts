@@ -7,11 +7,13 @@ import { FirebaseAppService } from './services/firebase-app.service';
 import { AlertComponent } from './components/alert/alert.component';
 import { OverlayService } from './services/overlay.service';
 import { AdminGuard } from './aguards/admin.guard';
+import { CarousellComponent } from './components/carousell/carousell.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 @NgModule({
-  declarations: [HandburgerMenuComponent, CardComponent, AlertComponent],
+  declarations: [HandburgerMenuComponent, CardComponent, AlertComponent,  CarousellComponent, ProductListComponent],
   imports: [CommonModule],
-  exports: [HandburgerMenuComponent, CardComponent, AlertComponent],
+  exports: [HandburgerMenuComponent, CardComponent, AlertComponent,CarousellComponent,ProductListComponent],
   providers: [HeaderNavService, FirebaseAppService, OverlayService,AdminGuard],
 })
 export class SharedModule {}
