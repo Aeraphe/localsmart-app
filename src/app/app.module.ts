@@ -7,6 +7,8 @@ import { DefaultModule } from './layouts/default/default.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {  MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule
   ],
   bootstrap: [AppComponent],
 })
