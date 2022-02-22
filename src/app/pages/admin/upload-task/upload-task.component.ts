@@ -20,7 +20,9 @@ export class UploadTaskComponent implements OnInit {
     category: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
     condition: new FormControl(null, [Validators.required]),
-    sold: new FormControl(0),
+    payment_method: new FormControl(null),
+    sold: new FormControl(false),
+    promo: new FormControl(false),
   });
 
   constructor(

@@ -27,8 +27,8 @@
             formControlName="condition"
             id="condition"
           >
-            <option selected value="0">Novo</option>
-            <option value="1">Usado</option>
+            <option selected value="false">Novo</option>
+            <option value="true">Usado</option>
           </select>
         </div>
 
@@ -51,6 +51,18 @@
             id="price"
           />
         </div>
+
+        <div class="form-control">
+          <label class="form-control__label" for="payment-method"
+            >condições de pagamento:</label
+          >
+          <input
+            class="control-input control-input--email"
+            type="text"
+            formControlName="payment_method"
+            id="payment-method"
+          />
+        </div>
         <div class="form-control">
           <label class="form-control__label" for="price">foto:</label>
           <input type="file" (change)="onFileChange($event)" id="" />
@@ -64,7 +76,7 @@
     </app-card>
   </div>
 </section>
-<div class="loader" [ngClass]="{'loader--active':loaderActive}">
+<div class="loader" [ngClass]="{ 'loader--active': loaderActive }">
   <div class="loader__container">
     <div class="lds-roller">
       <div></div>
