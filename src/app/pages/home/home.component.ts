@@ -10,6 +10,7 @@ import { ProductsService } from '../../shared/services/products.service';
 export class HomeComponent implements OnInit {
   touch = true;
   products = [];
+  productsWithPromo = [];
 
   @ViewChild('photo') divPhotoEl!: ElementRef<HTMLDivElement>;
   constructor(
@@ -22,7 +23,14 @@ export class HomeComponent implements OnInit {
   private getProdutcsHandle = (): void => {
     this.productsService.getProducts().then((data) => {
       this.products = data;
+      this.filterProductsWithPromo(data);
       console.log(data);
+    });
+  };
+
+  private filterProductsWithPromo = (data: []) => {
+    this.productsWithPromo = data.filter((item: any) => {
+      return item.promo;
     });
   };
 
