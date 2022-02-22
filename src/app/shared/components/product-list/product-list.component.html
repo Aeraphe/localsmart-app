@@ -1,0 +1,38 @@
+<section *ngIf="displayList" class="product-list-section">
+  <div class="container">
+    <header class="header">
+      <h3 class="heading-3">Ofertas</h3>
+    </header>
+    <ul class="list">
+      <li *ngFor="let product of products" class="list__item">
+        <img class="list__item__img" [src]="product?.url" />
+        <div class="list__item__text">
+          <h4 class="heading-4">{{ product?.name }}</h4>
+          <h3 class="heading-3 list__item__text__price">
+            {{ product?.price | currency: "BRL" }}
+          </h3>
+          <div  *ngIf="product?.payment_method" class="subtitle list__item__text__payment">{{product?.payment_method}}</div>
+          <div
+            *ngIf="product?.sold == 1"
+            class="subtitle list__item__text__sold"
+          >
+            Vendido
+          </div>
+          <div
+            *ngIf="product?.condition == 0"
+            class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
+          >
+            Novo
+          </div>
+          <div
+            *ngIf="product?.condition != 0"
+            class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
+          >
+            Usado
+          </div>
+        </div>
+        <ng-content></ng-content>
+      </li>
+    </ul>
+  </div>
+</section>
