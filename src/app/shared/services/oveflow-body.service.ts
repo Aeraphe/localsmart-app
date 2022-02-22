@@ -12,9 +12,11 @@ export class OveflowBodyService {
 
   activeOverflowBody = () => {
     this.render.addClass(document.body, 'oveflow-body--active');
+    this.render.addClass(document.getElementsByTagName( 'html' )[0], 'oveflow-body--active');
   };
 
   removeOverflowBody = () => {
     this.render.removeClass(document.body, 'oveflow-body--active');
+    this.render.removeClass(document.getElementsByTagName( 'html' )[0], 'oveflow-body--active');
   };
 }
