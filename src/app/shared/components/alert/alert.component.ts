@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
 import { OverlayService } from '../../services/overlay.service';
+import { OveflowBodyService } from '../../services/oveflow-body.service';
 
 @Component({
   selector: 'app-alert',
@@ -15,14 +16,23 @@ export class AlertComponent implements OnInit {
 
   constructor(
     private alertService: AlertService,
-    private overlayService: OverlayService
+    private overlayService: OverlayService,
+    private overflowService: OveflowBodyService
   ) {
     this.alertService.getAlertState().subscribe((state) => {
       this.open = state;
       overlayService.changeOverlayState(state);
+      this.overflowActiveHandler(state);
     });
   }
 
+  private overflowActiveHandler = (state: boolean) => {
+    if (state) {
+      this.overflowService.activeOverflowBody();
+    } else {
+      this.overflowService.removeOverflowBody();
+    }
+  };
   ngOnInit(): void {}
 
   handlerOpenOverlay = () => {};
@@ -31,11 +41,12 @@ export class AlertComponent implements OnInit {
     this.open = false;
 
     this.overlayService.changeOverlayState(false);
+    this.overflowActiveHandler(false);
   };
 
   confirm = () => {
-
     this.onConfirm.emit(true);
     this.alertService.closeAlert();
+    this.overflowActiveHandler(false);
   };
 }
