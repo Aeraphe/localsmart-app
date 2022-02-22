@@ -1,0 +1,36 @@
+<div *ngIf="loadCorousell" class="container">
+  <div class="carousell">
+    <div class="carousell__content">
+      <header class="carousell__content__header">
+        <div class="carousell__content__header__title">
+          <h3 class="heading-4">{{itemDisplayed?.name}} 
+            <span
+            *ngIf="itemDisplayed?.condition == 0"
+            class="item  item--new"
+          >
+           - (Novo)
+          </span>
+          <span
+            *ngIf="itemDisplayed?.condition != 0"
+            class="item  item--used"
+          >
+            - (Usado)
+          </span>
+          </h3>
+        </div>
+        <div class="carousell__content__header__descriptions">
+          <h4 class="heading-3 carousell__content__header__descriptions__price">
+            {{ itemDisplayed?.price | currency: "BRL" }}  <span  class="payment_method" > {{itemDisplayed?.payment_method}} </span>
+            </h4>
+        </div>
+      </header>
+      <div class="carousell__content__body">
+        <img
+          class="carousell__content__body__img"
+          [src]="itemDisplayed?.url"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
