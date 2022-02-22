@@ -7,6 +7,7 @@ import { UploadManagerComponent } from './pages/admin/upload-manager/upload-mana
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { AdminGuard } from './shared/aguards/admin.guard';
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'product', component: ProductDetailsComponent},
       { path: 'login', component: LoginComponent },
       {
         path: 'admin',
