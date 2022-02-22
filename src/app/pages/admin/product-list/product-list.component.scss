@@ -61,12 +61,22 @@
       &__payment {
         margin-top: 2px;
         font-size: 1.3rem;
-        color: rgb(5, 197, 21);
+        color: $product-payment-method-color;
       }
-      &__state {
+      &__sold {
         margin-top: 1px;
-        color: yellow;
+        color: $product-sold-state-color;
         text-transform: uppercase;
+      }
+      &__condition {
+        margin-top: 1px;
+        text-transform: capitalize;
+        &--new {
+          color: $product-contition-color--new;
+        }
+        &--used {
+          color: $product-contition-color--used;
+        }
       }
     }
   }
@@ -86,4 +96,16 @@
       transform: scale(1.2);
     }
   }
+}
+
+.mat-slide{
+  position: absolute;
+  bottom: 1rem;
+  right: 1.2rem;
+}
+
+.mat-check-box{
+  position: absolute;
+  bottom: 4.5rem;
+  right: 1.2rem;
 }

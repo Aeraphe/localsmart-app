@@ -4,7 +4,7 @@ import { AlertService } from '../../../shared/services/alert.service';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-
+import { ThemePalette } from '@angular/material/core';
 
 registerLocaleData(localePt);
 
@@ -20,6 +20,10 @@ registerLocaleData(localePt);
   ],
 })
 export class ProductListComponent implements OnInit {
+  color: ThemePalette = 'primary';
+  checked = false;
+  disabled = false;
+
   @Output() openAlert: boolean = false;
 
   selectedProduct: any;
@@ -50,8 +54,15 @@ export class ProductListComponent implements OnInit {
   };
 
   deleteProduct = () => {
-    const {id,imgUrl} = this.selectedProduct;
-    this.productService.deleteProduct(id,imgUrl);
+    const { id, imgUrl } = this.selectedProduct;
+    this.productService.deleteProduct(id, imgUrl);
+    this.handleGetProducts();
+  };
+
+  updateProduct = async (id: any, value: any, field: string) => {
+    let data: any = {};
+    data[field] = value;
+    await this.productService.updateProduct(id, data);
     this.handleGetProducts();
   };
 }

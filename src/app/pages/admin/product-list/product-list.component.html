@@ -13,15 +13,61 @@
           <h3 class="heading-3 list__item__text__price">
             {{ product.price | currency: "BRL" }}
           </h3>
-          <div class="subtitle list__item__text__payment">6x R25,83</div>
-          <div class="subtitle list__item__text__state">Vendido</div>
+          <div
+            *ngIf="product?.payment_method"
+            class="subtitle list__item__text__payment"
+          >
+            {{ product?.payment_method }}
+          </div>
+          <div
+            *ngIf="product?.sold"
+            class="subtitle list__item__text__sold"
+          >
+            Vendido
+          </div>
+          <div
+            *ngIf="product?.condition"
+            class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
+          >
+            Novo
+          </div>
+          <div
+            *ngIf="!product?.condition"
+            class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
+          >
+            Usado
+          </div>
         </div>
-        <div class="actions">
-          <i class="fa-solid fa-pencil actions__icon"></i>
-          <i
-            (click)="openDeleteAlert({ name: product.name, id: product.id, imgUrl:product.url })"
-            class="fa-solid fa-circle-minus actions__icon"
-          ></i>
+        <div class="actions-container">
+          <div class="actions">
+            <i class="fa-solid fa-pencil actions__icon"></i>
+            <i
+              (click)="
+                openDeleteAlert({
+                  name: product.name,
+                  id: product.id,
+                  imgUrl: product.url
+                })
+              "
+              class="fa-solid fa-circle-minus actions__icon"
+            ></i>
+          </div>
+          <div class="mat-slide">
+            <mat-slide-toggle
+              class="example-margin"
+              [color]="color"
+              [checked]="product.sold"
+              [disabled]="disabled"
+              (change)="updateProduct(product.id,!product.sold,'sold')"
+            >
+              Vendido
+            </mat-slide-toggle>
+          </div>
+          <div class="mat-check-box">
+            <mat-checkbox class="example-margin" 
+            [(ngModel)]="product.promo"
+            (change)="updateProduct(product.id,product.promo,'promo')" >Promoção</mat-checkbox>
+          </div>
         </div>
       </li>
     </ul>
