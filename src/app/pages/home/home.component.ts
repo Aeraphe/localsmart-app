@@ -1,30 +1,37 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HeaderNavService } from '../../shared/services/header-nav.service';
+import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit,AfterViewInit  {
-  touch =  true;
+export class HomeComponent implements OnInit {
+  touch = true;
+  products = [];
 
-  @ViewChild('photo')  divPhotoEl!: ElementRef<HTMLDivElement>;
-  constructor(private headerService: HeaderNavService) {
-
+  @ViewChild('photo') divPhotoEl!: ElementRef<HTMLDivElement>;
+  constructor(
+    private headerService: HeaderNavService,
+    private productsService: ProductsService
+  ) {
+    this.getProdutcsHandle();
   }
+
+  private getProdutcsHandle = (): void => {
+    this.productsService.getProducts().then((data) => {
+      this.products = data;
+      console.log(data);
+    });
+  };
 
   ngOnInit(): void {
-    
-    this.toogleAppHeader()
-  }
-
-  ngAfterViewInit() {
-    console.log(this.divPhotoEl.nativeElement.style.setProperty('--bg-path','url("../../../assets/photos/teste.jfif")'));
+    this.toogleAppHeader();
   }
 
   toogleAppHeader = () => {
-    if(this.touch){
+    if (this.touch) {
       this.headerService.open();
       this.touch = false;
 
@@ -33,6 +40,5 @@ export class HomeComponent implements OnInit,AfterViewInit  {
         this.touch = true;
       }, 5000);
     }
-  
   };
 }
