@@ -9,7 +9,7 @@ import { ProductsService } from '../../shared/services/products.service';
 })
 export class HomeComponent implements OnInit {
   touch = true;
-  products = [];
+  products: any = [];
   productsWithPromo = [];
 
   @ViewChild('photo') divPhotoEl!: ElementRef<HTMLDivElement>;
@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
 
   private getProdutcsHandle = (): void => {
     this.productsService.getProducts().then((data) => {
-      this.products = data;
-      this.filterProductsWithPromo(data);
-      console.log(data);
+      //Reverse for put the last inserted products in top of array
+      this.products = [...data.reverse()];
+      this.filterProductsWithPromo(this.products);
     });
   };
 
