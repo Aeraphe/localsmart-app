@@ -17,7 +17,7 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'product', component: ProductDetailsComponent},
+      { path: 'product-details/:?p', component: ProductDetailsComponent},
       { path: 'login', component: LoginComponent },
       {
         path: 'admin',
