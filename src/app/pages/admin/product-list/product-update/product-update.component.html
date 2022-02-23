@@ -1,0 +1,60 @@
+<h4 mat-dialog-title class="heading-3">Atualizar dados Produto</h4>
+
+<mat-dialog-content>
+  <form [formGroup]="uploadForm" class="form">
+    <div class="form-control">
+      <label class="form-control__label" for="category">tipo:</label>
+      <select   class="control-select" formControlName="category" id="category">
+        <option selected value="phone">Celular</option>
+        <option value="celular_acessorios">Acessórios</option>
+        <option value="notebook">Notebook</option>
+      </select>
+    </div>
+
+    <div class="form-control">
+      <label class="form-control__label" for="condition"
+        >estado de conservacão:</label
+      >
+      <select class="control-select" formControlName="condition" id="condition">
+        <option selected value="false">Novo</option>
+        <option value="true">Usado</option>
+      </select>
+    </div>
+
+    <div class="form-control">
+      <label class="form-control__label" for="name">nome:</label>
+      <input
+        class="control-input control-input--email"
+        type="text"
+        formControlName="name"
+        id="name"
+      />
+    </div>
+
+    <div class="form-control">
+      <label class="form-control__label" for="price">preço:</label>
+      <input
+        class="control-input control-input--email"
+        type="text"
+        formControlName="price"
+        id="price"
+      />
+    </div>
+
+    <div class="form-control">
+      <label class="form-control__label" for="payment-method"
+        >condições de pagamento:</label
+      >
+      <input
+        class="control-input control-input--email"
+        type="text"
+        formControlName="payment_method"
+        id="payment-method"
+      />
+    </div>
+  </form>
+  <div class="loader-content" [ngClass]="{'loader-content--active':showLoading}">
+    <span class="loader"></span>
+  </div>
+
+</mat-dialog-content>

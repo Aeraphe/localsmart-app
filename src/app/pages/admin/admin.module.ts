@@ -7,12 +7,19 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductListComponent } from './product-list/product-list.component';
-import {  MatSlideToggleModule} from "@angular/material/slide-toggle";
-import {  MatCheckboxModule} from "@angular/material/checkbox";
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProductUpdateComponent } from './product-list/product-update/product-update.component';
 
 @NgModule({
-  declarations: [AdminComponent,UploadManagerComponent, UploadTaskComponent, ProductListComponent],
+  declarations: [
+    AdminComponent,
+    UploadManagerComponent,
+    UploadTaskComponent,
+    ProductListComponent,
+    ProductUpdateComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,8 +27,8 @@ import {  MatCheckboxModule} from "@angular/material/checkbox";
     ReactiveFormsModule,
     SharedModule,
     MatSlideToggleModule,
-    MatCheckboxModule
-    
-  ]
+    MatCheckboxModule,
+    MatDialogModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}
