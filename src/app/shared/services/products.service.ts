@@ -16,19 +16,8 @@ import {
   doc,
   updateDoc,
 } from 'firebase/firestore';
+import { Product } from 'src/app/interfaces/product';
 
-interface Product {
-  url?: string;
-  file_name?: string;
-  category: string;
-  name: string;
-  price?: number;
-  props?: [{ name: string; value: string }];
-  sold?: boolean;
-  promo?: boolean;
-  payment_method?: string;
-  condition?: boolean;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -116,4 +105,6 @@ export class ProductsService {
       console.log(error);
     }
   };
+
+  
 }
