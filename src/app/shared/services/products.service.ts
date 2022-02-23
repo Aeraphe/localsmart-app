@@ -15,9 +15,11 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  getDoc,
+  FieldPath,
+  Query,
 } from 'firebase/firestore';
 import { Product } from 'src/app/interfaces/product';
-
 
 @Injectable({
   providedIn: 'root',
@@ -42,9 +44,8 @@ export class ProductsService {
   };
 
   private handleSaveImageDataOnDb = async (product: Product) => {
-
     let fileExtension = product.file_name?.split('.').pop();
-    let newFileName = 'produtc_' + Date.now() +'_.' + fileExtension; 
+    let newFileName = 'produtc_' + Date.now() + '_.' + fileExtension;
     const docRef = await addDoc(
       collection(this.db, this.productColectionName),
       {
@@ -77,6 +78,17 @@ export class ProductsService {
     return products;
   };
 
+  getProductById = async (id: string | null) => {
+    if (id) {
+      let productRef = doc(this.db, this.productColectionName + '/' + id);
+      let resp = await getDoc(productRef);
+
+      return resp.data();
+    } else {
+      throw new Error('');
+    }
+  };
+
   deleteProduct = (id: string, fileName: string) => {
     try {
       let docRef = doc(this.db, this.productColectionName, id);
@@ -105,6 +117,4 @@ export class ProductsService {
       console.log(error);
     }
   };
-
-  
 }
