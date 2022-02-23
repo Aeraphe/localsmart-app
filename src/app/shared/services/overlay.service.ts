@@ -1,19 +1,25 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OverlayService {
-  private subClick = new BehaviorSubject(false);
-  private click$ = this.subClick.asObservable();
-
-  constructor() {}
+  private render!: Renderer2;
+  constructor(renderFactory: RendererFactory2) {
+    this.render = renderFactory.createRenderer(null, null);
+  }
 
   changeOverlayState = (state: boolean): void => {
-    this.subClick.next(state);
-  };
-  getOverlayState = (): Observable<boolean> => {
-    return this.click$;
+    if (state) {
+      this.render.addClass(
+        document.querySelector('#app-overlay'),
+        'overlay-activate'
+      );
+    } else {
+      this.render.removeClass(
+        document.querySelector('#app-overlay'),
+        'overlay-activate'
+      );
+    }
   };
 }
