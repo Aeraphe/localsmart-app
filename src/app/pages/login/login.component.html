@@ -1,34 +1,35 @@
 <section class="login-section">
   <div class="login-section__container">
     <app-card>
-      <div class="card-content">
-        <h3 class=" heading-3 title">Login</h3>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
-          <div class="form-control">
-            <label class="form-control__label" for="email">e-mail:</label>
-            <input
-              class="control-input control-input--email"
-              type="email"
-              formControlName="email"
-              id="email"
-            />
-          </div>
+      <h3 class="heading-3 title">Login</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+        <div class="form-control">
+          <label class="form-control__label" for="email">e-mail:</label>
+          <input
+            class="control-input control-input--email"
+            type="email"
+            formControlName="email"
+            id="email"
+          />
+        </div>
 
-          <div class="form-control">
-            <label class="form-control__label" for="password">senha:</label>
-            <input
-              class="control-input control-input--password"
-              type="password"
-              formControlName="password"
-              id="password"
-            />
-          </div>
+        <div class="form-control">
+          <label class="form-control__label" for="password">senha:</label>
+          <input
+            class="control-input control-input--password"
+            type="password"
+            formControlName="password"
+            id="password"
+          />
+        </div>
 
-          <div class="form-control">
-            <button class="btn" [disabled]="!loginForm.valid" type="submit">Logar</button>
-          </div>
-        </form>
-      </div>
+        <div class="form-control">
+          <button class="btn" [disabled]="!loginForm.valid" type="submit">
+            Logar
+          </button>
+        </div>
+      </form>
     </app-card>
   </div>
+
 </section>
