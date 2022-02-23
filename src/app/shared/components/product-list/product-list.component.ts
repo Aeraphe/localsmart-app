@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CurrencyPipe } from '@angular/common'
 
 @Component({
   selector: 'app-product-list',
@@ -14,6 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit, OnChanges {
+  @Input() link: string = '';
   @Input() products: any[] = [];
   @Input() title: string = 'Ofertas';
 
@@ -21,7 +23,7 @@ export class ProductListComponent implements OnInit, OnChanges {
   alertDeleteText: string = '';
   displayList = false;
   totalProducts = 0;
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer, private currencyService:CurrencyPipe) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     let currValueTotalItems = changes['products'].currentValue.length;
@@ -47,7 +49,7 @@ export class ProductListComponent implements OnInit, OnChanges {
       '%0a %0a %e2%98%85 ' +
       product.name +
       '%0a %e2%86%92 ' +
-      product.price;
+      this.currencyService.transform(product.price,'BRL');
     return saftURI;
   };
 }

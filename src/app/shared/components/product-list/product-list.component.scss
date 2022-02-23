@@ -5,7 +5,6 @@
 @import "../../../scss/icons/font-awasome/scss/solid.scss";
 @import "../../../scss/icons/font-awasome/scss/brands.scss";
 
-
 :host {
   height: 100%;
   width: 100%;
@@ -26,17 +25,22 @@
 
 .list {
   height: 100%;
+  
+ 
+
   &__item {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     padding: $content-padding;
-
     @include line-bottom-light;
     position: relative;
     text-decoration: none;
-
     align-items: flex-start;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-black;
+    }
 
     &__img {
       min-width: 110px;
@@ -99,29 +103,28 @@
   }
 }
 
-.brand{
+.brand {
   position: absolute;
- 
-  right: .7rem;
-  bottom: .5rem;
- 
 
-  &__link{
+  right: 0.7rem;
+  bottom: 0.5rem;
+
+  &__link {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     color: rgb(0, 168, 0);
 
-    &:link{
+    &:link {
       text-decoration: none;
       font-size: 2rem;
     }
   }
 
-  &__text{
+  &__text {
     display: inline-block;
-    font-size: .8rem;
+    font-size: 0.8rem;
     color: $color-white;
   }
 }
