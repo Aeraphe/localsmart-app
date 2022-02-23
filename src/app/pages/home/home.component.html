@@ -1,11 +1,16 @@
 <section class="home-section" (click)="toogleAppHeader()">
-  <header class="header">
+  <header>
     <app-carousell [data]="productsWithPromo"></app-carousell>
   </header>
 
-  <main class="main">
-    <app-card>
-      <app-product-list [products]="productsWithPromo"></app-product-list>
-    </app-card>
-  </main>
+  <div>
+    <app-product-list [products]="productsWithPromo"></app-product-list>
+  </div>
+
+  <div>
+    <app-product-list
+      [title]="'Produtos da Loja'"
+      [products]="products"
+    ></app-product-list>
+  </div>
 </section>
