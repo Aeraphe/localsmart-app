@@ -5,6 +5,9 @@ import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { ThemePalette } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductUpdateComponent } from './product-update/product-update.component';
+import { Product } from 'src/app/interfaces/product';
 
 registerLocaleData(localePt);
 
@@ -32,7 +35,8 @@ export class ProductListComponent implements OnInit {
   totalProducts = 0;
   constructor(
     private productService: ProductsService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -65,4 +69,8 @@ export class ProductListComponent implements OnInit {
     await this.productService.updateProduct(id, data);
     this.handleGetProducts();
   };
+
+  editProduct(product: Product) {
+    this.dialog.open(ProductUpdateComponent, { data: product });
+  }
 }
