@@ -49,3 +49,31 @@
   padding: 0px;
   height: 3rem;
 }
+
+
+.logout-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  &__container{
+    min-height: 90px;
+    width: 100%;
+    padding: 1.3rem;
+    
+  }
+
+  &__title{
+    padding-top: .7rem;
+    padding-left: .9rem;
+    min-height: 30px;
+    display: inline-block;
+  }
+
+  &__btn{
+    padding: 0 .7rem;
+  }
+}

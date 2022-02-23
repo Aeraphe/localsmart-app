@@ -1,5 +1,5 @@
 <section class="login-section">
-  <div class="login-section__container">
+  <div class="login-section__container" *ngIf="!isUserLoggedin">
     <app-card>
       <h3 class="heading-3 title">Login</h3>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
@@ -31,5 +31,18 @@
       </form>
     </app-card>
   </div>
-
+  <div class="logout-section" *ngIf="isUserLoggedin">
+    <div class="logout-section__container">
+      <app-card >
+        <header class="logout-section__title">
+          <h3 class="heading-3">Sair</h3>
+        </header>
+        <div class="logout-section__btn">
+          <button class="btn" type="button" (click)="logoutHandler()">
+            Logout
+          </button>
+        </div>
+      </app-card>
+    </div>
+  </div>
 </section>

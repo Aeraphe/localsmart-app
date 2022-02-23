@@ -16,6 +16,8 @@ interface Person {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  isUserLoggedin = false;
+
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [
@@ -33,6 +35,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.appHeaderService.open();
+    this.auth.monitorAuthState().subscribe((user) => {
+      if (user) {
+        this.isUserLoggedin = true;
+      } else {
+        this.isUserLoggedin = false;
+      }
+    });
   }
 
   onSubmit = async () => {
@@ -46,5 +55,11 @@ export class LoginComponent implements OnInit {
     if (response.status) {
       this.router.navigate(['admin']);
     }
+  };
+
+  logoutHandler = async () => {
+    this.loaderService.setLoaderState(true);
+    await this.auth.logoutFirebase();
+    this.loaderService.setLoaderState(false);
   };
 }
