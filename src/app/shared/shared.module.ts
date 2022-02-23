@@ -10,12 +10,13 @@ import { AdminGuard } from './aguards/admin.guard';
 import { CarousellComponent } from './components/carousell/carousell.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { RouterModule } from '@angular/router';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
-  declarations: [HandburgerMenuComponent, CardComponent, AlertComponent,  CarousellComponent, ProductListComponent],
+  declarations: [HandburgerMenuComponent, CardComponent, AlertComponent,  CarousellComponent, ProductListComponent, LoaderComponent],
   imports: [CommonModule,RouterModule],
-  exports: [HandburgerMenuComponent, CardComponent, AlertComponent,CarousellComponent,ProductListComponent],
+  exports: [HandburgerMenuComponent, CardComponent, AlertComponent,CarousellComponent,ProductListComponent,LoaderComponent],
   providers: [HeaderNavService, FirebaseAppService, OverlayService,AdminGuard,CurrencyPipe],
 })
 export class SharedModule {}
