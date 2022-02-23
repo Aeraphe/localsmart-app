@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HeaderNavService } from '../../shared/services/header-nav.service';
 import { ProductsService } from '../../shared/services/products.service';
+import { LoaderService } from '../../shared/services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -15,16 +16,19 @@ export class HomeComponent implements OnInit {
   @ViewChild('photo') divPhotoEl!: ElementRef<HTMLDivElement>;
   constructor(
     private headerService: HeaderNavService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private loaderService: LoaderService
   ) {
     this.getProdutcsHandle();
   }
 
   private getProdutcsHandle = (): void => {
+    this.loaderService.setLoaderState(true);
     this.productsService.getProducts().then((data) => {
       //Reverse for put the last inserted products in top of array
       this.products = [...data.reverse()];
       this.filterProductsWithPromo(this.products);
+      this.loaderService.setLoaderState(false);
     });
   };
 
