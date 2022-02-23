@@ -1,3 +1,49 @@
-<p>product-details works!</p>
-<mat-slide-toggle >
-</mat-slide-toggle>
+<section class="product-details-section">
+  <div class="product">
+    <header class="product__header">
+  
+      <div class="list__item__text">
+        <h4 class="heading-4">{{ product?.name }}</h4>
+        <h3 class="heading-3 list__item__text__price">
+          {{ product?.price | currency: "BRL" }}
+        </h3>
+        <div
+          *ngIf="product?.payment_method"
+          class="subtitle list__item__text__payment"
+        >
+          {{ product?.payment_method }}
+        </div>
+        <div
+          *ngIf="product?.sold == 1"
+          class="subtitle list__item__text__sold"
+        >
+          Vendido
+        </div>
+        <div
+          *ngIf="product?.condition == 0"
+          class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
+        >
+          Novo
+        </div>
+        <div
+          *ngIf="product?.condition != 0"
+          class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
+        >
+          Usado
+        </div>
+      </div>
+    </header>
+    <div class="product__body">
+      <img class="product__body__img" [src]="product?.url" alt="" />
+    </div>
+  </div>
+
+  <div class="product-list">
+    <app-product-list
+    [title]="'Produtos da Loja'"
+    [products]="products"
+    [link]="'/product-details'"
+  ></app-product-list>
+  </div>
+  
+</section>
