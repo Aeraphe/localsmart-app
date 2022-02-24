@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderNavService } from '../../../shared/services/header-nav.service';
+import { RouteLocationService } from '../../../shared/services/route-location.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,16 @@ import { HeaderNavService } from '../../../shared/services/header-nav.service';
 })
 export class HeaderComponent implements OnInit {
   headerState: Boolean = false;
-  constructor(private headerService: HeaderNavService) {}
+  routerLocation = '';
+  constructor(
+    private headerService: HeaderNavService,
+    private routerLocationService: RouteLocationService
+  ) {
+    this.routerLocationService.getRouteLocation().subscribe((location) => {
+      this.routerLocation = location;
+      console.log(this.routerLocation);
+    });
+  }
 
   ngOnInit(): void {
     this.headerService.getHeaderState().subscribe((state) => {
@@ -16,7 +26,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  toggle = ()=>{
-    this.headerState = !this.headerState
-  }
+  toggle = () => {
+    this.headerState = !this.headerState;
+  };
 }

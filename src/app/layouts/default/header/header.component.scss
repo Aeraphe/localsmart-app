@@ -2,7 +2,7 @@
 @import "../../../scss//typografy";
 @import "../../../scss/icons/font-awasome/scss/fontawesome.scss";
 @import "../../../scss/icons/font-awasome/scss/solid.scss";
-
+@import "../../../scss/icons/font-awasome/scss/regular.scss";
 
 :host {
   position: relative;
@@ -91,5 +91,31 @@
     height: 0px;
     opacity: 0;
     margin-top: -100px;
+  }
+}
+
+.header__btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-right: 1rem;
+
+ 
+  &__heart {
+    margin-right: 1.1rem;
+    font-size: 1.3rem;
+    &:hover {
+      cursor: pointer;
+      color: $color-black;
+    }
+  }
+
+  &__search{
+    font-size: 1.2rem;
+    &:hover {
+      cursor: pointer;
+      color: $color-black;
+    }
   }
 }
