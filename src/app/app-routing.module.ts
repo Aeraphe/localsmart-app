@@ -16,16 +16,16 @@ const routes: Routes = [
     path: '',
     component: DefaultComponent,
     children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'product-details/:id', component: ProductDetailsComponent},
-      { path: 'login', component: LoginComponent },
+      { path: 'home',data:{info:'Home'}, component: HomeComponent },
+      { path: 'product-details/:id',data:{info:'Produto'}, component: ProductDetailsComponent},
+      { path: 'login',data:{info:'Login'}, component: LoginComponent },
       {
-        path: 'admin',
+        path: 'admin',data:{info:'Administração'},
         component: AdminComponent,
         canActivate:[AdminGuard],
         children: [
-          { path: 'product-add', component: UploadManagerComponent },
-          { path: 'product-list', component: ProductListComponent },
+          { path: 'product-add',data:{info:'Adicionar Produto'}, component: UploadManagerComponent },
+          { path: 'product-list',data:{info:'Lista de Produtos'}, component: ProductListComponent },
         ],
       },
     ],
