@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from '../../shared/services/products.service';
+import { RouteLocationService } from '../../shared/services/route-location.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,8 +14,12 @@ export class ProductDetailsComponent implements OnInit {
   products: any = [];
   constructor(
     private route: ActivatedRoute,
-    private productsService: ProductsService
-  ) {}
+    private productsService: ProductsService,
+    private locationService:RouteLocationService
+  ) {
+
+    this.locationService.setRouteLocation(route.snapshot.data['info']);
+  }
 
   async ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
