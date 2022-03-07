@@ -16,10 +16,12 @@ import {
   doc,
   updateDoc,
   getDoc,
-  FieldPath,
+  onSnapshot,
   Query,
 } from 'firebase/firestore';
 import { Product } from 'src/app/interfaces/product';
+import { resolve } from 'dns';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -65,18 +67,26 @@ export class ProductsService {
     );
   };
 
-  getProducts = async () => {
+  getProducts = (): Observable<[]> => {
+    let sub = new Subject();
+    let products$ = sub.asObservable() as Observable<[]>;
+    let productsColections = collection(this.db, this.productColectionName);
     let products: any = [];
-    let querySnapshot = await getDocs(
-      collection(this.db, this.productColectionName)
-    );
 
-    querySnapshot.forEach((doc) => {
-      products.push({ ...doc.data(), id: doc.id });
+    onSnapshot(productsColections, (snapshot) => {
+      snapshot.docChanges().forEach((change: any) => {
+       
+        products.push({ ...change.doc.data(), id: change.doc.id });
+      });
+
+      console.log(products);
+      sub.next(products);
     });
 
-    return products;
+    return products$;
   };
+
+  onProductCollectionChange = () => {};
 
   getProductById = async (id: string | null) => {
     if (id) {
