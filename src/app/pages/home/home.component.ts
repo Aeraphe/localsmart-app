@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HeaderNavService } from '../../shared/services/header-nav.service';
 import { ProductsService } from '../../shared/services/products.service';
 import { LoaderService } from '../../shared/services/loader.service';
+import { RouteLocationService } from '../../shared/services/route-location.service';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +18,16 @@ export class HomeComponent implements OnInit {
   constructor(
     private headerService: HeaderNavService,
     private productsService: ProductsService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private locationService:RouteLocationService
   ) {
     this.getProdutcsHandle();
+    this.locationService.setRouteLocation('Home');
   }
 
   private getProdutcsHandle = (): void => {
     this.loaderService.setLoaderState(true);
-    this.productsService.getProducts().then((data) => {
+    this.productsService.getProducts().subscribe((data) => {
       //Reverse for put the last inserted products in top of array
       this.products = [...data.reverse()];
       this.filterProductsWithPromo(this.products);

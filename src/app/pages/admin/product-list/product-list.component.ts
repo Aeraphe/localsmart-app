@@ -8,6 +8,7 @@ import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductUpdateComponent } from './product-update/product-update.component';
 import { Product } from 'src/app/interfaces/product';
+import { RouteLocationService } from "../../../shared/services/route-location.service";
 
 registerLocaleData(localePt);
 
@@ -36,15 +37,18 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductsService,
     private alertService: AlertService,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    private locationService:RouteLocationService
+  ) {
+    this.locationService.setRouteLocation("Adm. Produtos")
+  }
 
   ngOnInit(): void {
     this.handleGetProducts();
   }
 
   private handleGetProducts = () => {
-    this.productService.getProducts().then((doc) => {
+    this.productService.getProducts().subscribe((doc) => {
       this.products = doc;
       this.totalProducts = doc.length;
     });
