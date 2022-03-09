@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ProductListComponent } from './pages/admin/product-list/product-list.component';
+import { ProductWhaListComponent } from './pages/admin/product-wha-list/product-wha-list.component';
 import { UploadManagerComponent } from './pages/admin/upload-manager/upload-manager.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -16,16 +17,30 @@ const routes: Routes = [
     path: '',
     component: DefaultComponent,
     children: [
-      { path: 'home',data:{info:'Home'}, component: HomeComponent },
-      { path: 'product-details/:id',data:{info:'Produto'}, component: ProductDetailsComponent},
-      { path: 'login',data:{info:'Login'}, component: LoginComponent },
+      { path: 'home', data: { info: 'Home' }, component: HomeComponent },
       {
-        path: 'admin',data:{info:'Administração'},
+        path: 'product-details/:id',
+        data: { info: 'Produto' },
+        component: ProductDetailsComponent,
+      },
+      { path: 'login', data: { info: 'Login' }, component: LoginComponent },
+      {
+        path: 'admin',
+        data: { info: 'Administração' },
         component: AdminComponent,
-        canActivate:[AdminGuard],
+        canActivate: [AdminGuard],
         children: [
-          { path: 'product-add',data:{info:'Adicionar Produto'}, component: UploadManagerComponent },
-          { path: 'product-list',data:{info:'Lista de Produtos'}, component: ProductListComponent },
+          {
+            path: 'product-add',
+            data: { info: 'Adicionar Produto' },
+            component: UploadManagerComponent,
+          },
+          {
+            path: 'product-list',
+            data: { info: 'Lista de Produtos' },
+            component: ProductListComponent,
+          },
+          { path: 'product-wha-list',  data: { info: 'Lista Whatsapp' }, component: ProductWhaListComponent },
         ],
       },
     ],
