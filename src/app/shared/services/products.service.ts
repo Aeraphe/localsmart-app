@@ -127,4 +127,11 @@ export class ProductsService {
       console.log(error);
     }
   };
+
+
+
+  getProductCategory = async () =>{
+
+    return ["phone",'phone-gadgets']
+  }
 }
