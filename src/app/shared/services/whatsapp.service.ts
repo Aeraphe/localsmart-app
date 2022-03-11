@@ -16,14 +16,14 @@ export class WhatsappService {
     private currencyService: CurrencyPipe
   ) {}
 
-  createProductList = (productCategories: any[], products: any[]) => {
+  createProductList = (productCategories: any[], products: any[],store:string = "LocalSmart") => {
     let baseURI: string = 'whatsapp://send?text=';
     let saftURI: any = this.sanitizer.bypassSecurityTrustUrl(baseURI);
     let list = '';
     let productCategory = '';
 
     productCategories.forEach((category) => {
-      productCategory = '       ' + category + this.space + this.space;
+      productCategory = ' &#8195 ' + this.arrow + category + this.space + this.space;
       let productItems = '';
       products.forEach((product) => {
         if (category == product.category) {
@@ -37,13 +37,13 @@ export class WhatsappService {
       });
 
       if (productItems != '') {
-        list = list + productCategory + productItems;
+        list =  list + productCategory + productItems;
       }
     });
 
     console.log(list);
 
-    saftURI.changingThisBreaksApplicationSecurity = baseURI + list;
+    saftURI.changingThisBreaksApplicationSecurity = baseURI + store + " " + Date() + this.space + "Lista de Produtos:" + this.space+  list;
 
     return saftURI;
   };
