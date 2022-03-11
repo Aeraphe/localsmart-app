@@ -1,0 +1,16 @@
+@import "../../../scss/mixins";
+@import "../../../scss/icons/font-awasome/scss/brands.scss";
+@import "../../../scss/icons/font-awasome/scss/fontawesome.scss";
+
+:host{
+    height: 100%;
+    width: 100%;
+}
+
+.product-wha-list-section {
+  @include section;
+}
+
+.content{
+    width: 100%;
+}

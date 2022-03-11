@@ -1,1 +1,21 @@
-<p>product-wha-list works!</p>
+<section class="product-wha-list-section">
+  <div class="content">
+    <app-card>
+      <div class="brand">
+        <a
+          [href]="productWhatsappListHref"
+          data-text="Take a look at this awesome website:"
+          class="brand__link"
+          ><i class="fa-brands fa-whatsapp brand__icon"></i>
+          <span class="brand__text">Perguntar</span>
+        </a>
+      </div>
+
+      <div *ngFor="let item of productCategory" class="product-list">
+        <header class="title">
+          <h4 class="heading-4">{{item}}</h4>
+        </header>
+      </div>
+    </app-card>
+  </div>
+</section>
