@@ -16,6 +16,7 @@ export class ProductUpdateComponent implements OnInit {
   productUpdated$ = this.subUpdateValues.asObservable();
   uploadForm: FormGroup;
   showLoading = false;
+  productCategories: any[] = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public product: Product,
@@ -25,16 +26,21 @@ export class ProductUpdateComponent implements OnInit {
       name: new FormControl(product.name, [Validators.required]),
       category: new FormControl(product.category, [Validators.required]),
       price: new FormControl(product.price, [Validators.required]),
+      wholesale: new FormControl(product.wholesale),
+      description: new FormControl(product.description),
+      short_description: new FormControl(product.short_description),
       condition: new FormControl(product.condition, [Validators.required]),
       payment_method: new FormControl(product.payment_method),
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.uploadForm.valueChanges.pipe(debounceTime(1500)).subscribe((val) => {
       delete val.id;
       this.updateProduct(val);
     });
+
+    this.productCategories = await this.productService.getProductCategory();
   }
 
   updateProduct = async (data: any) => {

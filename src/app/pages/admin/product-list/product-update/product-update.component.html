@@ -4,10 +4,10 @@
   <form [formGroup]="uploadForm" class="form">
     <div class="form-control">
       <label class="form-control__label" for="category">tipo:</label>
-      <select   class="control-select" formControlName="category" id="category">
-        <option selected value="phone">Celular</option>
-        <option value="celular_acessorios">Acessórios</option>
-        <option value="notebook">Notebook</option>
+      <select class="control-select" formControlName="category" id="category">
+        <option *ngFor="let category of productCategories" [value]="category?.name">
+          {{ category?.name }}
+        </option>
       </select>
     </div>
 
@@ -32,12 +32,46 @@
     </div>
 
     <div class="form-control">
-      <label class="form-control__label" for="price">preço:</label>
+      <label class="form-control__label" for="description"
+        >descrição do produto:</label
+      >
+      <input
+        class="control-input control-input--email"
+        type="text"
+        formControlName="description"
+        id="description"
+      />
+    </div>
+
+    <div class="form-control">
+      <label class="form-control__label" for="short_description"
+        >descrição whatsapp</label
+      >
+      <input
+        class="control-input control-input--email"
+        type="text"
+        formControlName="short_description"
+        id="short_description"
+      />
+    </div>
+
+    <div class="form-control">
+      <label class="form-control__label" for="price">preço[Varejo]:</label>
       <input
         class="control-input control-input--email"
         type="text"
         formControlName="price"
         id="price"
+      />
+    </div>
+
+    <div class="form-control">
+      <label class="form-control__label" for="wholesale">preço[Atacado]:</label>
+      <input
+        class="control-input control-input--email"
+        type="text"
+        formControlName="wholesale"
+        id="wholesale"
       />
     </div>
 
@@ -53,8 +87,10 @@
       />
     </div>
   </form>
-  <div class="loader-content" [ngClass]="{'loader-content--active':showLoading}">
+  <div
+    class="loader-content"
+    [ngClass]="{ 'loader-content--active': showLoading }"
+  >
     <span class="loader"></span>
   </div>
-
 </mat-dialog-content>
