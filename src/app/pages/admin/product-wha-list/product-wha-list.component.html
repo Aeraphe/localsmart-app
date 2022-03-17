@@ -1,21 +1,176 @@
 <section class="product-wha-list-section">
   <div class="content">
-    <app-card>
-      <div class="brand">
-        <a
-          [href]="productWhatsappListHref"
-          data-text="Take a look at this awesome website:"
-          class="brand__link"
-          ><i class="fa-brands fa-whatsapp brand__icon"></i>
-          <span class="brand__text">Perguntar</span>
-        </a>
-      </div>
+    <div class="content__item">
+      <app-card>
+        <div class="products-options">
+          <div class="products-filter">
+            <header class="products-filter__title">
+              <h3 class="heading-3">Filtrar</h3>
+            </header>
+            <div class="filtred-category">
+              <ul class="filtred-category__list">
+                <li
+                  *ngFor="let item of productCategoryFilter"
+                  class="filtred-category__list__item"
+                >
+                  <span class="filtred-category__list__item__name">
+                    {{ item }}
+                  </span>
+                  <a
+                    (click)="deleteSelectedCategory(item)"
+                    class="filtred-category__list__item__btn"
+                  >
+                    x
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="form-control">
+              <div class="form-control__group">
+                <div class="form-control__item">
+                  <select
+                    class="form-control__item__select"
+                    #filterItem
+                    name="filter"
+                    id="filter-category"
+                  >
+                    <option value="" selected></option>
+                    <option *ngFor="let item of productCategory" [value]="item">
+                      {{ item }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-control__item form-control--inline">
+                  <button
+                    class="btn"
+                    (click)="setFilterProductsByCategory(filterItem)"
+                  >
+                    Adicionar
+                  </button>
+                  <button class="btn" (click)="clearProductCategoryFilter()">
+                    Limpar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <div *ngFor="let item of productCategory" class="product-list">
-        <header class="title">
-          <h4 class="heading-4">{{item}}</h4>
-        </header>
-      </div>
-    </app-card>
+          <div class="products-options__prices">
+            <header class="products-filter__title">
+              <h3 class="heading-3">Opções:</h3>
+            </header>
+            <div class="form-control">
+              <div class="form-control--inline">
+                <div class="form-control__item">
+                  <input
+                    (change)="setPriceTypeToDisplay($event)"
+                    type="checkbox"
+                    name="wholesale"
+                    id="wholesale"
+                    class="form-control__item__checkbox"
+                    value="wholesale"
+                  /><label
+                    class="form-control__item__checkbox__label"
+                    for="wholesale"
+                    >Preç. Atacado</label
+                  >
+                </div>
+
+                <div class="form-control__item">
+                  <input
+                    (change)="setPriceTypeToDisplay($event)"
+                    value="retail"
+                    type="checkbox"
+                    name="retail"
+                    id="retail"
+                    checked
+                    class="form-control__item__checkbox"
+                  /><label
+                    class="form-control__item__checkbox__label"
+                    for="retail"
+                    >Preç. Varejo</label
+                  >
+                </div>
+                <div class="form-control__item">
+                  <input
+                    (change)="removeSoldProductsHandler($event)"
+                    value="sold"
+                    type="checkbox"
+                    name="sold"
+                    id="sold"
+                    class="form-control__item__checkbox"
+                  /><label
+                    class="form-control__item__checkbox__label"
+                    for="sold"
+                    >Vendidos</label
+                  >
+                </div>
+
+                <div class="form-control__item">
+                  <input
+                    (change)="setPriceTypeToDisplay($event)"
+                    value="extra_line"
+                    type="checkbox"
+                    name="extra_line"
+                    id="extra_line"
+                    checked
+                    class="form-control__item__checkbox"
+                  /><label
+                    class="form-control__item__checkbox__label"
+                    for="extra_line"
+                    >Linha extra</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-brand">
+            <a
+              [href]="productWhatsappListHref"
+              data-text="Take a look at this awesome website:"
+              class="brand__link"
+              ><i class="fa-brands fa-whatsapp brand__icon"></i>
+              <span class="brand__text"> Compartilhar</span>
+            </a>
+          </div>
+        </div>
+      </app-card>
+    </div>
+
+    <div class="content__item">
+      <app-card *ngFor="let category of productCategoryFilter">
+        <div class="products">
+          <header class="products__category">
+            <h3 class="heading-3">{{ category }}</h3>
+          </header>
+          <ul class="products__list">
+            <ng-container *ngFor="let product of productsFiltred">
+              <li
+                *ngIf="product.category == category"
+                class="products__list__item"
+              >
+                <div class="name">&#9733; {{ product?.name }}</div>
+                <div class="price">
+                  <span *ngIf="options.wholesale" class="holesale"
+                    >{{ product?.wholesale | currency: "BRL" }} [A]</span
+                  >
+                  <span *ngIf="options.retail" class="holesale">
+                    {{ product?.price | currency: "BRL" }} [V]</span
+                  >
+
+                  <span
+                    *ngIf="product.sold && options.sold"
+                    class="holesale"
+                  >	
+                  &#9660;</span
+                  >
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </app-card>
+    </div>
   </div>
 </section>
