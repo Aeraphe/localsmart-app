@@ -6,49 +6,90 @@
       </div>
       <form class="form" [formGroup]="uploadForm" (submit)="onSubmit()">
         <div class="form-control">
-          <label class="form-control__label" for="category">tipo:</label>
+          <label class="form-control__label" for="category">*tipo:</label>
           <select
             class="control-select"
             formControlName="category"
             id="category"
           >
-            <option selected value="phone">Celular</option>
-            <option value="celular_acessorios">Acessórios</option>
-            <option value="notebook">Notebook</option>
+            <option
+              *ngFor="let category of productCategories"
+              [value]="category?.name"
+            >
+              {{ category?.name | uppercase }}
+            </option>
           </select>
         </div>
 
         <div class="form-control">
           <label class="form-control__label" for="condition"
-            >estado de conservação:</label
+            >*estado de conservação:</label
           >
           <select
             class="control-select"
             formControlName="condition"
             id="condition"
+            required
           >
-            <option selected value="false">Novo</option>
-            <option value="true">Usado</option>
+            <option selected value="false">NOVO</option>
+            <option value="true">USADO</option>
           </select>
         </div>
 
         <div class="form-control">
-          <label class="form-control__label" for="name">nome:</label>
+          <label class="form-control__label" for="name">*nome:</label>
           <input
             class="control-input control-input--email"
             type="text"
             formControlName="name"
             id="name"
+            required
           />
         </div>
 
         <div class="form-control">
-          <label class="form-control__label" for="price">preço:</label>
+          <label class="form-control__label" for="description">descrição do produto:</label>
+          <input
+            class="control-input control-input--email"
+            type="text"
+            formControlName="description"
+            id="description"
+          />
+        </div>
+
+        <div class="form-control">
+          <label class="form-control__label" for="short_description"
+            >descrição whatsapp</label
+          >
+          <input
+            class="control-input control-input--email"
+            type="text"
+            formControlName="short_description"
+            id="short_description"
+          />
+        </div>
+
+        <div class="form-control">
+          <label class="form-control__label" for="price"
+            >*preço [Varejo]:</label
+          >
           <input
             class="control-input control-input--email"
             type="text"
             formControlName="price"
             id="price"
+          />
+        </div>
+
+        <div class="form-control">
+          <label class="form-control__label" for="wholesale"
+            >preço [Atacado]:</label
+          >
+          <input
+            class="control-input control-input--email"
+            type="text"
+            formControlName="wholesale"
+            id="wholesale"
           />
         </div>
 
@@ -64,7 +105,7 @@
           />
         </div>
         <div class="form-control">
-          <label class="form-control__label" for="price">foto:</label>
+          <label class="form-control__label" for="price">*foto:</label>
           <input type="file" (change)="onFileChange($event)" id="" />
         </div>
         <div class="form-control">

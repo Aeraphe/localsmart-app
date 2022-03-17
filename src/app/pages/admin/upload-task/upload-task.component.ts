@@ -14,11 +14,16 @@ export class UploadTaskComponent implements OnInit {
 
   loaderActive = false;
 
+  productCategories: any[] = [];
+
   uploadForm = new FormGroup({
     file: new FormControl(null, [Validators.required]),
     name: new FormControl(null, [Validators.required]),
+    description: new FormControl(null,),
+    short_description: new FormControl(null,),
     category: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
+    wholesale: new FormControl(null),
     condition: new FormControl(null, [Validators.required]),
     payment_method: new FormControl(null),
     sold: new FormControl(false),
@@ -31,7 +36,9 @@ export class UploadTaskComponent implements OnInit {
     private OverlayService: OverlayService
   ) {}
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    this.productCategories = await this.productsService.getProductCategory();
+  }
 
   onSubmit = async () => {
     try {
