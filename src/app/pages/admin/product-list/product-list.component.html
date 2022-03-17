@@ -26,13 +26,13 @@
             Vendido
           </div>
           <div
-            *ngIf="product?.condition"
+            *ngIf="product?.condition=='false'"
             class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
           >
             Novo
           </div>
           <div
-            *ngIf="!product?.condition"
+            *ngIf="product?.condition=='true'"
             class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
           >
             Usado
