@@ -4,7 +4,10 @@ export interface Product {
   file_name?: string;
   category: string;
   name: string;
+  description?: string;
+  short_description?: string;
   price?: number;
+  wholesale?: number;
   props?: [{ name: string; value: string }];
   sold?: boolean;
   promo?: boolean;
