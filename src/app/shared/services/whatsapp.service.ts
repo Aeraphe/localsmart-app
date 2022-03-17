@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,15 @@ export class WhatsappService {
   symbols = {
     'money-bag': '%f0%9f%92%b0 ',
     space: ' %20 ',
-    'line-break': ' %0a ',
+    'line-break': '%0a',
+    'line-breakX2': '%0a  %0a',
     store: ' %f0%9f%8f%a0 ',
     list: ' %f0%9f%93%8b ',
     phone: '%e2%98%8e ',
-    fire:'%f0%9f%94%a5 '
+    fire: '%f0%9f%94%a5 ',
+    star: ' %e2%98%85 ',
+    star2: '%f0%9f%8c%9f',
+    down_arrow: '%e2%96%bc',
   };
 
   constructor(
@@ -25,32 +30,91 @@ export class WhatsappService {
     private currencyService: CurrencyPipe
   ) {}
 
-  createProductList = (
+  createProductListLink = (
     productCategories: any[],
     products: any[],
-    store: string = 'LocalSmart'
+    options: any
   ) => {
-    let baseURI: string = 'whatsapp://send?text=';
-    let saftURI: any = this.sanitizer.bypassSecurityTrustUrl(baseURI);
+    let list = this.createProductListHandler(
+      productCategories,
+      products,
+      options
+    );
+    let saftURI = this.createWhatsappLinkHandler(options, list);
+    return saftURI;
+  };
+
+  private createProductListHandler = (
+    productCategories: any[],
+    products: any[],
+    options: any
+  ) => {
     let list = '';
     let productCategory = '';
-    let now = new Date();
-    let listDate = now.getDay() + '/' + now.getDate() + '/' + now.getFullYear();
 
     productCategories.forEach((category: string) => {
+      //Product Category
       productCategory =
-        '' + this.arrow + category.toUpperCase() + this.space + this.space;
+        this.symbols['line-break'] +
+        this.symbols.star2 +
+        ' *' +
+        category.toUpperCase() +
+        '*' +
+        this.symbols['line-breakX2'];
+
       let productItems = '';
-      products.forEach((product) => {
+      products.forEach((product: any) => {
         if (category == product.category) {
-          productItems =
-            productItems +
-            this.star +
-            product.name +
-            ' ' +
-            this.symbols['money-bag'] +
-            this.currencyService.transform(product.price, 'BRL') +
-            this.space;
+          //Check product has short description or set the description to be the product name
+          let productDescription = product.short_description
+            ? product.short_description.trim()
+            : product.name.trim();
+          //Check if the user wants to show retail price
+          let retail = options.retail
+            ? ' _' +
+              this.currencyService.transform(
+                product.price,
+                'BRL',
+                undefined,
+                undefined,
+                'pt'
+              ) +
+              '_'
+            : '';
+          //Check if the user wants to show wholesale price
+          let wholesale = options.wholesale
+            ? ' *' +
+              this.currencyService.transform(product.wholesale, 'BRL') +
+              ' [A]*'
+            : '';
+
+          //Check if the user want extra line above it product item
+          let extraline = options['extra_line']
+            ? this.symbols['line-breakX2']
+            : this.symbols['line-break'];
+
+            let productFullDescription = "";
+          //Check if the user want to show sold product on list
+          if (options.sold && product.sold) {
+            productFullDescription =
+              '~' +
+              productDescription.slice(0, 23) +
+              '...' +
+              retail +
+              wholesale +
+              '~';
+
+            let productItem = productFullDescription + extraline;
+            productItems = productItems + productItem.trim();
+          } else {
+            productFullDescription = productDescription + retail + wholesale;
+          }
+
+
+          if (!product.sold) {
+            let productItem = productFullDescription + extraline;
+            productItems = productItems + productItem.trim();
+          }
         }
       });
 
@@ -59,19 +123,48 @@ export class WhatsappService {
       }
     });
 
-    console.log(list);
+    return list;
+  };
+
+  private createWhatsappLinkHandler = (options: any, list: string) => {
+    let route: string = 'https://localsmart-app.web.app/home/';
+    let baseURI: string = 'whatsapp://send?text=';
+    let uri = baseURI + route;
+
+    console.log(uri);
+
+    let saftURI: any = this.sanitizer.bypassSecurityTrustUrl(uri);
+    let now = new Date();
+    let storeItem =
+      this.symbols['line-breakX2'] + this.symbols.store + options.store + ' - ';
+
+    let contactItem =
+      'Contato: ' + options.contact + this.symbols['line-break'];
+
+    let contactWhatsapp =
+      'Whatsapp: ' + options.whatsapp + this.symbols['line-break'];
+
+    let social = 'Social: ' + options.social + this.symbols['line-breakX2'];
+
+    let listDate =
+      now.getDay() +
+      '/' +
+      now.getDate() +
+      '/' +
+      now.getFullYear() +
+      this.symbols['line-breakX2'];
+
+    let extraText =
+      'Produtos com Garantia e Procedência!!!' + this.symbols['line-breakX2'];
 
     saftURI.changingThisBreaksApplicationSecurity =
-      baseURI +
-      this.symbols.store +
-      store +
-      ' ' +
+      uri +
+      storeItem +
       listDate +
-      this.symbols['line-break']  +
-      "Vendas:" + '(31) 9999-9999' + this.symbols['line-break'] +  this.symbols['line-break'] +
-      'Lista de Produtos:' +
-      this.symbols['line-break'] +
-      this.symbols['line-break'] +
+      contactItem +
+      contactWhatsapp +
+      social +
+      extraText +
       list;
 
     return saftURI;
