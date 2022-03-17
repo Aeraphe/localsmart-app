@@ -1,0 +1,36 @@
+@import "../../../scss/typografy";
+@import "../../../scss/mixins";
+
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.store-section {
+  padding: 1rem;
+}
+
+.card {
+  &-content {
+    padding: 0.5rem;
+  }
+
+  &__header {
+    &__title {
+      margin-bottom: 1rem;
+      margin-top: 0.5rem;
+    }
+    @include line-bottom-smooth;
+  }
+}
+
+.store-list {
+  list-style: none;
+  margin-top: 1rem;
+
+  font-size: 1.2rem;
+  letter-spacing: .05rem;
+  &__item {
+    line-height: 2rem;
+  }
+}

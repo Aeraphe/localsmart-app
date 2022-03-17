@@ -1,0 +1,20 @@
+<section class="store-section">
+  <app-card>
+    <div class="card-content">
+      <header class="card__header">
+        <h3 class="heading-3 card__header__title">Dados da Loja</h3>
+      </header>
+
+      <ul class="store-list">
+        <li class="store-list__item">Nome: {{ storeData?.name }}</li>
+        <li class="store-list__item">Celular: {{ storeData?.cellphone }}</li>
+        <li class="store-list__item">Fixo: {{ storeData?.phone }}</li>
+        <li class="store-list__item">E-mail: {{ storeData?.email }}</li>
+        <li class="store-list__item">Rua: {{ storeData?.street }}</li>
+        <li class="store-list__item">Bairro: {{ storeData?.lacale }}</li>
+        <li class="store-list__item">Cidade: {{ storeData?.city }}</li>
+        <li class="store-list__item">Estado: {{ storeData?.uf }}</li>
+      </ul>
+    </div>
+  </app-card>
+</section>
