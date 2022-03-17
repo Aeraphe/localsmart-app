@@ -11,16 +11,13 @@ import {
   getFirestore,
   collection,
   addDoc,
-  getDocs,
   deleteDoc,
   doc,
   updateDoc,
   getDoc,
   onSnapshot,
-  Query,
 } from 'firebase/firestore';
 import { Product } from 'src/app/interfaces/product';
-import { resolve } from 'dns';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -52,9 +49,12 @@ export class ProductsService {
       collection(this.db, this.productColectionName),
       {
         url: product.url,
-        category: product?.category || 'phones',
-        name: product?.name || 'phones',
+        category: product?.category,
+        name: product?.name,
+        description: product?.description,
+        short_description: product?.short_description,
         price: product?.price || 0,
+        wholesale: product?.wholesale || 0,
         props: product?.props || [],
         fileName: newFileName,
         originalFileName: product.file_name,
@@ -71,15 +71,13 @@ export class ProductsService {
     let sub = new Subject();
     let products$ = sub.asObservable() as Observable<[]>;
     let productsColections = collection(this.db, this.productColectionName);
-    let products: any = [];
 
     onSnapshot(productsColections, (snapshot) => {
+      let products: any = [];
       snapshot.docChanges().forEach((change: any) => {
-       
         products.push({ ...change.doc.data(), id: change.doc.id });
       });
 
-      console.log(products);
       sub.next(products);
     });
 
@@ -128,10 +126,24 @@ export class ProductsService {
     }
   };
 
-
-
-  getProductCategory = async () =>{
-
-    return ["phone",'phone-gadgets']
-  }
+  getProductCategory = async () => {
+    return [
+      { name: 'celulares semi novos', position: 1, markup: 0.15 },
+      { name: 'celulares novos', position: 2, markup: 0.15 },
+      { name: 'tablet', position: 3, markup: 0.15 },
+      { name: 'receptores', position: 4, markup: 0.15 },
+      { name: 'drones', position: 5, markup: 0.15 },
+      { name: 'relógios novos', position: 6, markup: 0.15 },
+      { name: 'relógios semi novos', position: 7, markup: 0.15 },
+      { name: 'caixas de som', position: 8, markup: 0.15 },
+      { name: 'memorias', position: 9, markup: 0.15 },
+      { name: 'desktops', position: 10, markup: 0.15 },
+      { name: 'notebooks', position: 11, markup: 0.15 },
+      { name: 'cabos', position: 12, markup: 0.15 },
+      { name: 'carregadores', position: 13, markup: 0.15 },
+      { name: 'capinhas', position: 14, markup: 0.15 },
+      { name: 'peliculas', position: 15, markup: 0.15 },
+      { name: 'outros', position: 16, markup: 0.15 },
+    ];
+  };
 }
