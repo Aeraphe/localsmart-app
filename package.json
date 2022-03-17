@@ -8,6 +8,7 @@
     "ng": "ng",
     "start": "node serve",
     "build": "ng build",
+    "build:firebase": "firebase deploy --only hosting",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
