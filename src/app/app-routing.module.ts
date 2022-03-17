@@ -4,6 +4,7 @@ import { DefaultComponent } from './layouts/default/default.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ProductListComponent } from './pages/admin/product-list/product-list.component';
 import { ProductWhaListComponent } from './pages/admin/product-wha-list/product-wha-list.component';
+import { StoreComponent } from './pages/admin/store/store.component';
 import { UploadManagerComponent } from './pages/admin/upload-manager/upload-manager.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -29,7 +30,13 @@ const routes: Routes = [
         data: { info: 'Administração' },
         component: AdminComponent,
         canActivate: [AdminGuard],
+
         children: [
+          {
+            path: 'store',
+            data: { info: 'Dados da Loja' },
+            component: StoreComponent,
+          },
           {
             path: 'product-add',
             data: { info: 'Adicionar Produto' },
@@ -40,7 +47,11 @@ const routes: Routes = [
             data: { info: 'Lista de Produtos' },
             component: ProductListComponent,
           },
-          { path: 'product-wha-list',  data: { info: 'Lista Whatsapp' }, component: ProductWhaListComponent },
+          {
+            path: 'product-wha-list',
+            data: { info: 'Lista Whatsapp' },
+            component: ProductWhaListComponent,
+          },
         ],
       },
     ],
