@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductUpdateComponent } from './product-list/product-update/product-update.component';
 import { ProductWhaListComponent } from './product-wha-list/product-wha-list.component';
+import { StoreComponent } from './store/store.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ProductWhaListComponent } from './product-wha-list/product-wha-list.com
     ProductListComponent,
     ProductUpdateComponent,
     ProductWhaListComponent,
+    StoreComponent,
   ],
   imports: [
     CommonModule,
