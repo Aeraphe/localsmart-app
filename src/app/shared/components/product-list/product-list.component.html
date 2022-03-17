@@ -29,13 +29,13 @@
               Vendido
             </div>
             <div
-              *ngIf="product?.condition == 0"
+              *ngIf="product?.condition == 'false'"
               class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
             >
               Novo
             </div>
             <div
-              *ngIf="product?.condition != 0"
+              *ngIf="product?.condition == 'true'"
               class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
             >
               Usado
@@ -47,7 +47,7 @@
               data-text="Take a look at this awesome website:"
               class="brand__link"
               ><i class="fa-brands fa-whatsapp brand__icon"></i>
-              <span class="brand__text">Perguntar</span>
+              <span class="brand__text">Compartilhar</span>
             </a>
           </div>
 
