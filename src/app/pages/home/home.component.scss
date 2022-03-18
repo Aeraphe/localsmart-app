@@ -1,6 +1,9 @@
 @import "../../scss/variables";
+@import '../../scss/mixins';
+
 :host {
   height: 100%;
+  @include host-padding-top;
 }
 
 .home-section {

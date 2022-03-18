@@ -5,6 +5,7 @@
 :host {
   height: 100%;
   width: 100%;
+  @include host-padding-top;
 }
 .product-details-section {
   width: 100%;

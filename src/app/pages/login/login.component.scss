@@ -1,10 +1,12 @@
 @import "../../scss/variables";
 @import "../../scss/typografy";
 @import "../../scss/components";
+@import '../../scss/mixins';
 
 :host {
   height: 100%;
   width: 100%;
+  @include host-padding-top;
 }
 
 .login-section {
