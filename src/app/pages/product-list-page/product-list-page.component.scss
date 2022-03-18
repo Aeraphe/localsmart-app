@@ -1,0 +1,112 @@
+@import "../../scss/variables";
+@import "../../scss/typografy";
+@import "../../scss/mixins";
+@import "../../scss/icons/font-awasome/scss/fontawesome.scss";
+@import "../../scss/icons/font-awasome/scss/solid.scss";
+
+:host {
+  height: 100%;
+  width: 100%;
+  @include host-padding-top;
+}
+
+.container{
+  padding-bottom: 35px;
+}
+.header {
+  padding: $content-padding;
+  @include line-bottom-light;
+}
+.product-list-section {
+  height: 100%;
+
+  margin: 5px;
+
+}
+
+.list {
+ height: 100%;
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: $content-padding;
+    
+    @include line-bottom-light;
+    position: relative;
+    text-decoration: none;
+
+    align-items: flex-start;
+
+    &__img {
+      width: 110px;
+      height: 110px;
+      border-radius: 7px;
+      transition: all 0.3s ease-in;
+
+      &:hover {
+        transform: translateY(-1px);
+        transform: scale(1.1);
+        box-shadow: 5px 5px 10px rgba($color: #fff, $alpha: 0.1);
+        cursor: pointer;
+      }
+    }
+
+    &__text {
+      padding-left: 1rem;
+
+      &__price {
+        margin-top: 1rem;
+      }
+
+      &__payment {
+        margin-top: 2px;
+        font-size: 1.3rem;
+        color: $product-payment-method-color;
+      }
+      &__sold {
+        margin-top: 1px;
+        color: $product-sold-state-color;
+        text-transform: uppercase;
+      }
+      &__condition {
+        margin-top: 1px;
+        text-transform: capitalize;
+        &--new {
+          color: $product-contition-color--new;
+        }
+        &--used {
+          color: $product-contition-color--used;
+        }
+      }
+    }
+  }
+}
+
+.actions {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  cursor: pointer;
+
+  &__icon {
+    font-size: 1.5rem;
+    margin-left: 1.5rem;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.mat-slide{
+  position: absolute;
+  bottom: 1rem;
+  right: 1.2rem;
+}
+
+.mat-check-box{
+  position: absolute;
+  bottom: 4.5rem;
+  right: 1.2rem;
+}

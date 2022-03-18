@@ -9,6 +9,7 @@ import { AdminModule } from './admin/admin.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ProductListPageComponent } from './product-list-page/product-list-page.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     NotFoundComponent,
     LoginComponent,
     ProductDetailsComponent,
+    ProductListPageComponent,
   ],
   imports: [
     CommonModule,
