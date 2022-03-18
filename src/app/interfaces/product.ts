@@ -8,6 +8,7 @@ export interface Product {
   short_description?: string;
   price?: number;
   wholesale?: number;
+  price_off?:number;
   props?: [{ name: string; value: string }];
   sold?: boolean;
   promo?: boolean;
