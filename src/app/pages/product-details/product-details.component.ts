@@ -15,22 +15,21 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
-    private locationService:RouteLocationService
+    private locationService: RouteLocationService
   ) {
-
     this.locationService.setRouteLocation(route.snapshot.data['info']);
   }
 
   async ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
 
-
-
     this.route.paramMap.subscribe(async (paramMap) => {
       let id = paramMap.get('id');
       this.product = await this.productsService.getProductById(id);
     });
 
-    this.products = await this.productsService.getProducts();
+    this.productsService.getProducts().subscribe((data) => {
+      this.products = data;
+    });
   }
 }
