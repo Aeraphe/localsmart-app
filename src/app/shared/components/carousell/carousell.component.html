@@ -5,13 +5,13 @@
         <div class="carousell__content__header__title">
           <h3 class="heading-4">{{itemDisplayed?.name}} 
             <span
-            *ngIf="itemDisplayed?.condition == 0"
+            *ngIf="itemDisplayed?.condition == 'false'"
             class="item  item--new"
           >
            - (Novo)
           </span>
           <span
-            *ngIf="itemDisplayed?.condition != 0"
+          *ngIf="itemDisplayed?.condition == 'true'"
             class="item  item--used"
           >
             - (Usado)

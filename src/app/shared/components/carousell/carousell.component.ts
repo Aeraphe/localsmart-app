@@ -17,7 +17,7 @@ interface Item {
   id?: string;
   url: string;
   price: string;
-  condition?: number;
+  condition?: string;
   sold?: number;
   payment_method?: string;
 }
@@ -76,13 +76,14 @@ export class CarousellComponent implements OnInit, OnChanges {
 
   private setDisplayedItemValue = () => {
     let product = this.data[this.itemSelectedIndex];
+
     this.itemDisplayed = {
       name: product.name,
       id: product.id,
       url: product.url,
       price: product.price,
       sold: product?.sold,
-      condition: product?.codition,
+      condition: product?.condition,
       payment_method: product?.payment_method,
     };
   };
