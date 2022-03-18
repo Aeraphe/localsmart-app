@@ -15,6 +15,7 @@ import {
   doc,
   updateDoc,
   getDoc,
+  getDocs,
   onSnapshot,
 } from 'firebase/firestore';
 import { Product } from 'src/app/interfaces/product';
@@ -74,11 +75,13 @@ export class ProductsService {
 
     onSnapshot(productsColections, (snapshot) => {
       let products: any = [];
-      snapshot.docChanges().forEach((change: any) => {
-        products.push({ ...change.doc.data(), id: change.doc.id });
+      getDocs(productsColections).then((item) => {
+        item.forEach((doc: any) => {
+          products.push({ ...doc.data(), id: doc.id });
+        });
+        sub.next(products);
       });
-
-      sub.next(products);
+     
     });
 
     return products$;
@@ -145,5 +148,33 @@ export class ProductsService {
       { name: 'peliculas', position: 15, markup: 0.15 },
       { name: 'outros', position: 16, markup: 0.15 },
     ];
+  };
+
+  getPriceTax = async (price: number) => {
+    let taxes = [
+      { rate: 0, tax: 5 },
+      { rate: 500, tax: 8 },
+      { rate: 1000, tax: 10 },
+      { rate: 1500, tax: 15 },
+      { rate: 2000, tax: 20 },
+      { rate: 2500, tax: 22 },
+      { rate: 3000, tax: 25 },
+    ];
+
+    let filterdTaxes = taxes
+      .filter((item) => {
+        if (item.rate <= price) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      .reduce((pre: any, actual: any) => {
+        pre = [] || pre;
+        pre.push(actual.tax);
+        return pre;
+      }, []);
+
+    return Math.max(...filterdTaxes);
   };
 }
