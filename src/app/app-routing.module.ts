@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { AdminGuard } from './shared/aguards/admin.guard';
 
 const routes: Routes = [
@@ -20,8 +21,12 @@ const routes: Routes = [
     children: [
       { path: 'home', data: { info: 'Home' }, component: HomeComponent },
       {
+        path: 'product-list-page/:cat',
+        component: ProductListPageComponent,
+      },
+      {
         path: 'product-details/:id',
-        data: { info: 'Produto' },
+        data: { info: 'Detalhes do Produto' },
         component: ProductDetailsComponent,
       },
       { path: 'login', data: { info: 'Login' }, component: LoginComponent },
