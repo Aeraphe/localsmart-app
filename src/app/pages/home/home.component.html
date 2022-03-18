@@ -1,10 +1,10 @@
 <section class="home-section" (click)="toogleAppHeader()">
   <header>
-    <app-carousell [data]="productsWithPromo"></app-carousell>
+    <app-carousell  [link] = "'/product-details'" [data]="productsWithPromo"></app-carousell>
   </header>
 
   <div>
-    <app-product-list [products]="productsWithPromo"></app-product-list>
+    <app-product-list    [link] = "'/product-details'" [products]="productsWithPromo"></app-product-list>
   </div>
 
   <div>
