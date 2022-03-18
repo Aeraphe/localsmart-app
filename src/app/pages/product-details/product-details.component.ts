@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+
 import { ProductsService } from '../../shared/services/products.service';
 import { RouteLocationService } from '../../shared/services/route-location.service';
 
@@ -15,13 +16,15 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
-    private locationService: RouteLocationService
+    private locationService: RouteLocationService,
+    private router: Router
   ) {
     this.locationService.setRouteLocation(route.snapshot.data['info']);
   }
 
   async ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
     this.route.paramMap.subscribe(async (paramMap) => {
       let id = paramMap.get('id');
