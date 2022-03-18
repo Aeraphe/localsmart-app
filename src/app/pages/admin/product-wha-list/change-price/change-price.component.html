@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Modificar preço</h2>
+
+<mat-dialog-content class="mat-typography">
+    <h3 class="heading-3 primary-color">
+        {{productSmallName}}
+    </h3>
+  <form [formGroup]="fGroup">
+    <div class="form-control">
+      <label for="wholesale" class="form-control____label"
+        >Preço Atacado/Custo:</label
+      >
+      <input type="text" formControlName="wholesale" />
+    </div>
+    <div class="form-control">
+      <label for="old_price" class="form-control____label"
+        >Preço Anterior de Venda:</label
+      >
+      <input type="text" formControlName="old_price" />
+    </div>
+
+    <div class="form-control">
+      <label for="price" class="form-control____label"
+        >Novo Preço de Venda: <small> (Diferença: {{ priceDiff }})</small></label
+      >
+      <input type="text" formControlName="price" />
+    </div>
+
+    <div class="form-control">
+      <label for="price_percent" class="form-control____label"
+        >Percentual: <small> (Sugerido: {{tax + "%"}})</small></label
+      >
+      <input type="text" [value]="tax" formControlName="price_percent" />
+    </div>
+
+    <mat-slider
+      (change)="onSlidChange($event)"
+      thumbLabel
+      [displayWith]="formatLabel"
+      min="0"
+      max="1"
+      step="0.01"
+      [value]="tax/100"
+    ></mat-slider>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button  (click)="savePriceChange()" cdkFocusInitial>Atualizar</button>
+  </mat-dialog-actions>
