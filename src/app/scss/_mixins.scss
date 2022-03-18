@@ -28,3 +28,7 @@
     width: 100%;
     padding: 1rem;
 }
+
+@mixin host-padding-top{
+    padding-top: 5rem;
+}
