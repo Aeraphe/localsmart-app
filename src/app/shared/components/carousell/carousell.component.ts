@@ -14,6 +14,7 @@ registerLocaleData(localePt);
 
 interface Item {
   name: string;
+  id?: string;
   url: string;
   price: string;
   condition?: number;
@@ -38,6 +39,7 @@ export class CarousellComponent implements OnInit, OnChanges {
   private totalItems = 0;
   loadCorousell = false;
   @Input() data: any[] = [];
+  @Input() link: string = '';
 
   constructor() {}
 
@@ -76,6 +78,7 @@ export class CarousellComponent implements OnInit, OnChanges {
     let product = this.data[this.itemSelectedIndex];
     this.itemDisplayed = {
       name: product.name,
+      id: product.id,
       url: product.url,
       price: product.price,
       sold: product?.sold,

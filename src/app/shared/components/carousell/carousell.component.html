@@ -24,7 +24,7 @@
             </h4>
         </div>
       </header>
-      <div class="carousell__content__body">
+      <div  [routerLink]="link + '/' + itemDisplayed.id" class="carousell__content__body">
         <img
           class="carousell__content__body__img"
           [src]="itemDisplayed?.url"
