@@ -13,5 +13,5 @@ export interface Product {
   sold?: boolean;
   promo?: boolean;
   payment_method?: string;
-  condition?: boolean;
+  condition?: string;
 }
