@@ -4,11 +4,13 @@
 @import "../../scss/icons/font-awasome/scss/solid.scss";
 @import "../../scss/icons/font-awasome/scss/brands.scss";
 
+
 :host {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+  @include host-padding-top;
 }
 .admin {
   &__section {
