@@ -149,9 +149,10 @@
               <li
                 *ngIf="product.category == category"
                 class="products__list__item"
+               
               >
-                <div class="name">&#9733; {{ product?.name }}</div>
-                <div class="price">
+                <div  (click) ="editProduct(product)" class="products__list__item__name" >&#9733; {{ product?.name }}</div>
+                <div class="products__list__item__price">
                   <span *ngIf="options.wholesale" class="holesale"
                     >{{ product?.wholesale | currency: "BRL" }} [A]</span
                   >

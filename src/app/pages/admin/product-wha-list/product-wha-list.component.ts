@@ -1,9 +1,12 @@
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { exit } from 'process';
+import { Product } from 'src/app/interfaces/product';
 import { RouteLocationService } from 'src/app/shared/services/route-location.service';
 import { ProductsService } from '../../../shared/services/products.service';
 import { WhatsappService } from '../../../shared/services/whatsapp.service';
+import { ChangePriceComponent } from './change-price/change-price.component';
 
 @Component({
   selector: 'app-product-wha-list',
@@ -39,7 +42,8 @@ export class ProductWhaListComponent implements OnInit {
     private productService: ProductsService,
     private whatsService: WhatsappService,
     private locationService: RouteLocationService,
-    private routeActive: ActivatedRoute
+    private routeActive: ActivatedRoute,
+    public dialog: MatDialog,
   ) {
     this.locationService.setRouteLocation(
       this.routeActive.snapshot.data['info']
@@ -164,4 +168,11 @@ export class ProductWhaListComponent implements OnInit {
       this.options
     );
   };
+
+
+  
+  editProduct(product: Product) {
+    this.dialog.open(ChangePriceComponent, { data: product, height: '45rem',
+    width: '60rem', });
+  }
 }
