@@ -75,6 +75,7 @@ export class ProductListComponent implements OnInit {
   };
 
   editProduct(product: Product) {
-    this.dialog.open(ProductUpdateComponent, { data: product });
+    this.dialog.open(ProductUpdateComponent, { data: product,height: '68rem',
+    width: '50rem', });
   }
 }
