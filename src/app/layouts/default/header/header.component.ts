@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   ) {
     this.routerLocationService.getRouteLocation().subscribe((location) => {
       this.routerLocation = location;
-      console.log(this.routerLocation);
     });
   }
 
