@@ -81,7 +81,6 @@ export class ProductsService {
         });
         sub.next(products);
       });
-     
     });
 
     return products$;
@@ -131,22 +130,22 @@ export class ProductsService {
 
   getProductCategory = async () => {
     return [
-      { name: 'celulares semi novos', position: 1, markup: 0.15 },
-      { name: 'celulares novos', position: 2, markup: 0.15 },
-      { name: 'tablet', position: 3, markup: 0.15 },
-      { name: 'receptores', position: 4, markup: 0.15 },
-      { name: 'drones', position: 5, markup: 0.15 },
-      { name: 'relógios novos', position: 6, markup: 0.15 },
-      { name: 'relógios semi novos', position: 7, markup: 0.15 },
-      { name: 'caixas de som', position: 8, markup: 0.15 },
-      { name: 'memorias', position: 9, markup: 0.15 },
-      { name: 'desktops', position: 10, markup: 0.15 },
-      { name: 'notebooks', position: 11, markup: 0.15 },
-      { name: 'cabos', position: 12, markup: 0.15 },
-      { name: 'carregadores', position: 13, markup: 0.15 },
-      { name: 'capinhas', position: 14, markup: 0.15 },
-      { name: 'peliculas', position: 15, markup: 0.15 },
-      { name: 'outros', position: 16, markup: 0.15 },
+      { name: 'celulares semi novos', position: 1, display: true,icon:'fa-solid fa-mobile-button ', id: 1 },
+      { name: 'celulares novos', position: 2, display: true,icon:'fa-solid fa-mobile-screen-button ', id: 2 },
+      { name: 'tablet', position: 3, display: true,icon:'fa-solid fa-tablet-screen-button', id: 3 },
+      { name: 'receptores', position: 4, display: true,icon:'fa-solid fa-satellite-dish', id: 4 },
+      { name: 'drones', position: 5, display: true,icon:'fa-solid fa-play', id: 5 },
+      { name: 'relógios novos', position: 6, display: true,icon:'fa-solid fa-clock', id: 6 },
+      { name: 'relógios semi novos', position: 7, display: true,icon:'fa-solid fa-clock', id: 7 },
+      { name: 'caixas de som', position: 8, display: true,icon:'fa-solid fa-music', id: 8 },
+      { name: 'memorias', position: 9, display: true,icon:'fa-solid fa-sd-card', id: 9 },
+      { name: 'desktops', position: 10, display: true,icon:'fa-solid fa-computer', id: 10 },
+      { name: 'notebooks', position: 11, display: true,icon:'fa-solid fa-laptop', id: 11 },
+      { name: 'cabos', position: 12, display: true,icon:'fa-solid fa-play', id: 12 },
+      { name: 'carregadores', position: 13, display: true,icon:'fa-solid fa-charging-station', id: 13 },
+      { name: 'capinhas', position: 14, display: true,icon:'fa-solid fa-play', id: 14 },
+      { name: 'peliculas', position: 15, display: true,icon:'fa-solid fa-play', id: 15 },
+      { name: 'outros', position: 16, display: true,icon:'fa-solid fa-play', id: 16 },
     ];
   };
 
