@@ -1,21 +1,24 @@
 <header class="header">
   <div class="header__container">
-    <div class="header__mobile-btn">
-      <app-handburger-menu></app-handburger-menu>
-    </div>
+    <div class="header__left-nav">
+      <div class="header__left-nav__mobile-btn">
+        <app-handburger-menu></app-handburger-menu>
+      </div>
 
-    <div class="location">
-      {{ routerLocation }}
+      <div class="location">
+        {{ routerLocation }}
+      </div>
     </div>
     <div class="header__title">
       <div class="header__title__container">
         <h4 class="heading-4 header__title__text">LocalSmart</h4>
       </div>
     </div>
-    <div class="header__btn">
+    <div class="header__right-nav">
+
       <i class="fa-regular fa-heart header__btn__heart"></i>
       <i class="fa-solid fa-magnifying-glass header__btn__search"></i>
     </div>
-
+ 
   </div>
 </header>
