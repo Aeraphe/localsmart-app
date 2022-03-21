@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     private locationService:RouteLocationService
   ) {
     this.getProdutcsHandle();
-    this.locationService.setRouteLocation('Home');
+    this.locationService.setRouteLocation('Principal');
   }
 
   private getProdutcsHandle = (): void => {
