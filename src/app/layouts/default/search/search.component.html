@@ -1,0 +1,23 @@
+<div
+  (click)="setFocous()"
+  class="container"
+  [ngClass]="{ activate: showSearch }"
+>
+  <div class="search__header">
+    <div class="form-control search__control">
+      <input
+        id="search"
+        #search_input
+        class="control-input search__input"
+        type="text"
+      />
+    </div>
+  </div>
+
+  <ul class="search-list">
+    <li class="search-list__item">iPhone</li>
+    <li class="search-list__item">iPhone Xr</li>
+    <li class="search-list__item">iPhone 11</li>
+  </ul>
+  <div class="search__footer" (click)="toogle()"></div>
+</div>
