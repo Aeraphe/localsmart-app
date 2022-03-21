@@ -6,11 +6,12 @@ import { HeaderComponent } from 'src/app/layouts/default/header/header.component
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MobileNavComponent } from './mobile-nav/mobile-nav.component';
 import { WhatsappComponent } from './whatsapp/whatsapp.component';
+import { SearchComponent } from './search/search.component';
 
 
 
 @NgModule({
-  declarations: [DefaultComponent,HeaderComponent, MobileNavComponent, WhatsappComponent],
+  declarations: [DefaultComponent,HeaderComponent, MobileNavComponent, WhatsappComponent, SearchComponent],
   imports: [
     CommonModule,
     RouterModule,
