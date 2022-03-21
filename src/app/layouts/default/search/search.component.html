@@ -10,14 +10,22 @@
         #search_input
         class="control-input search__input"
         type="text"
+        [(ngModel)]="search"
+        (keyup.enter)="searchProduct($event)"
       />
+      <div class="search__close-btn" (click)="toogle()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
     </div>
   </div>
 
   <ul class="search-list">
-    <li class="search-list__item">iPhone</li>
-    <li class="search-list__item">iPhone Xr</li>
-    <li class="search-list__item">iPhone 11</li>
+    <li
+      *ngFor="let product of productFiltred$ | async"
+      (click)="navigate(product.id)"
+      class="search-list__item"
+    >
+      {{ product.name }}
+    </li>
   </ul>
-  <div class="search__footer" (click)="toogle()"></div>
 </div>

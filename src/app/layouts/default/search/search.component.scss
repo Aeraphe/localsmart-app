@@ -1,8 +1,8 @@
 @import "../../../scss/variables";
 @import "../../../scss/components";
 @import "../../../scss/mixins";
-
-
+@import "../../../scss/icons/font-awasome/scss/solid.scss";
+@import "../../../scss/icons/font-awasome/scss/fontawesome.scss";
 
 .container {
   display: flex;
@@ -12,7 +12,7 @@
   position: fixed;
   top: 0px;
   right: 0px;
-  z-index: 1000;
+  z-index: 10;
   width: 0;
   height: 100%;
   background-color: #424242;
@@ -24,11 +24,25 @@
       margin: 0;
     }
 
+    &__input {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      position: relative;
+    }
+
+    &__close-btn {
+      cursor: pointer;
+      position: absolute;
+      top: 0.1rem;
+      right: 1.5rem;
+      font-size: 2.5rem;
+      color: red;
+    }
     &__control {
       margin-top: 0;
     }
 
-    &__footer{
+    &__footer {
       height: 100%;
       margin-top: 1rem;
     }
@@ -44,8 +58,6 @@
       @include line-bottom-smooth;
     }
   }
-
-
 }
 
 .activate {
