@@ -24,9 +24,7 @@ export class ProductListPageComponent implements OnInit {
     this.activeRoute.params.subscribe((data: any) => {
       if (data.cat) {
         this.category = data.cat;
-        this.locationService.setRouteLocation(
-          this.category?.toUpperCase() || 'Produtos'
-        );
+        this.locationService.setRouteLocation('Produtos');
         this.getFilterProductsByCat(data.cat);
       }
     });

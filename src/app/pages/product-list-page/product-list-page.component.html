@@ -1,46 +1,43 @@
-<section class="product-list-section">
-    <div class="container">
-      <header class="header">
-        <h3 class="heading-3">
-        Lista de  {{category |  titlecase }} ({{ productsFiltred.length }})
+<section class="container">
+  <header class="header">
+    <h3 class="heading-3">
+      Lista de {{ category | titlecase }} ({{ productsFiltred.length }})
+    </h3>
+  </header>
+  <ul class="list">
+    <li
+      *ngFor="let product of productsFiltred"
+      (click)="navigate(product.id)"
+      class="list__item"
+    >
+      <img class="list__item__img" [src]="product.url" />
+      <div class="list__item__text">
+        <h4 class="heading-4">{{ product.name }}</h4>
+        <h3 class="heading-3 list__item__text__price">
+          {{ product.price | currency: "BRL" }}
         </h3>
-      </header>
-      <ul class="list">
-        <li *ngFor="let product of productsFiltred"  (click)="navigate(product.id)" class="list__item">
-          <img class="list__item__img" [src]="product.url" />
-          <div class="list__item__text">
-            <h4 class="heading-4">{{ product.name }}</h4>
-            <h3 class="heading-3 list__item__text__price">
-              {{ product.price | currency: "BRL" }}
-            </h3>
-            <div
-              *ngIf="product?.payment_method"
-              class="subtitle list__item__text__payment"
-            >
-              {{ product?.payment_method }}
-            </div>
-            <div
-              *ngIf="product?.sold"
-              class="subtitle list__item__text__sold"
-            >
-              Vendido
-            </div>
-            <div
-              *ngIf="product?.condition=='false'"
-              class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
-            >
-              Novo
-            </div>
-            <div
-              *ngIf="product?.condition=='true'"
-              class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
-            >
-              Usado
-            </div>
-          </div>
-
-        </li>
-      </ul>
-    </div>
-  </section>
-  
+        <div
+          *ngIf="product?.payment_method"
+          class="subtitle list__item__text__payment"
+        >
+          {{ product?.payment_method }}
+        </div>
+        <div *ngIf="product?.sold" class="subtitle list__item__text__sold">
+          Vendido
+        </div>
+        <div
+          *ngIf="product?.condition == 'false'"
+          class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
+        >
+          Novo
+        </div>
+        <div
+          *ngIf="product?.condition == 'true'"
+          class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
+        >
+          Usado
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>
