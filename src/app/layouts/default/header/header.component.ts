@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from 'src/app/shared/services/search.service';
 import { HeaderNavService } from '../../../shared/services/header-nav.service';
 import { RouteLocationService } from '../../../shared/services/route-location.service';
 
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
   routerLocation = '';
   constructor(
     private headerService: HeaderNavService,
-    private routerLocationService: RouteLocationService
+    private routerLocationService: RouteLocationService,
+    private searchService:SearchService
   ) {
     this.routerLocationService.getRouteLocation().subscribe((location) => {
       this.routerLocation = location;
@@ -28,4 +30,8 @@ export class HeaderComponent implements OnInit {
   toggle = () => {
     this.headerState = !this.headerState;
   };
+
+  toogleSearchBtn = () =>{
+    this.searchService.toogle();
+  }
 }
