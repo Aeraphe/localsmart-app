@@ -15,10 +15,15 @@
       </div>
     </div>
     <div class="header__right-nav">
-
-      <i class="fa-regular fa-heart header__btn__heart"></i>
-      <i class="fa-solid fa-magnifying-glass header__btn__search"></i>
+      <div class="header__right-nav__item">
+        <i class="fa-regular fa-heart header__btn__heart"></i>
+      </div>
+      <div class="header__right-nav__item">
+        <i
+          (click)="toogleSearchBtn()"
+          class="fa-solid fa-magnifying-glass header__btn__search"
+        ></i>
+      </div>
     </div>
- 
   </div>
 </header>
