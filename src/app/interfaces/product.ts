@@ -14,4 +14,5 @@ export interface Product {
   promo?: boolean;
   payment_method?: string;
   condition?: string;
+  softdeleted?:boolean
 }
