@@ -8,7 +8,7 @@ import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductUpdateComponent } from './product-update/product-update.component';
 import { Product } from 'src/app/interfaces/product';
-import { RouteLocationService } from "../../../shared/services/route-location.service";
+import { RouteLocationService } from '../../../shared/services/route-location.service';
 
 registerLocaleData(localePt);
 
@@ -34,21 +34,23 @@ export class ProductListComponent implements OnInit {
   alertDeleteText: string = '';
   products!: any;
   totalProducts = 0;
+  productCategories: any[] = [];
   constructor(
     private productService: ProductsService,
     private alertService: AlertService,
     public dialog: MatDialog,
-    private locationService:RouteLocationService
+    private locationService: RouteLocationService
   ) {
-    this.locationService.setRouteLocation("Adm. Produtos")
+    this.locationService.setRouteLocation('Adm. Produtos');
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.handleGetProducts();
+    this.productCategories = await this.productService.getProductCategory();
   }
 
   private handleGetProducts = () => {
-    this.productService.getProducts().subscribe((doc) => {
+    this.productService.getAllProducts().subscribe((doc) => {
       this.products = doc;
       this.totalProducts = doc.length;
     });
@@ -68,6 +70,7 @@ export class ProductListComponent implements OnInit {
   };
 
   updateProduct = async (id: any, value: any, field: string) => {
+    console.log(value);
     let data: any = {};
     data[field] = value;
     await this.productService.updateProduct(id, data);
@@ -75,7 +78,10 @@ export class ProductListComponent implements OnInit {
   };
 
   editProduct(product: Product) {
-    this.dialog.open(ProductUpdateComponent, { data: product,height: '68rem',
-    width: '50rem', });
+    this.dialog.open(ProductUpdateComponent, {
+      data: product,
+      height: '68rem',
+      width: '50rem',
+    });
   }
 }
