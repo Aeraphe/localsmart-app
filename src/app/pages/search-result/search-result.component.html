@@ -1,0 +1,9 @@
+<section class="container">
+  <app-product-list
+    title="Busca por: {{ searchTerm$ | async | titlecase }} ({{
+      products.length
+    }})"
+    [link]="'/product-details'"
+    [products]="products"
+  ></app-product-list>
+</section>

@@ -1,0 +1,20 @@
+@import "../../scss/variables";
+@import "../../scss/typografy";
+@import "../../scss/mixins";
+@import "../../scss/icons/font-awasome/scss/fontawesome.scss";
+@import "../../scss/icons/font-awasome/scss/solid.scss";
+
+:host {
+    height: 100%;
+    width: 100%;
+    @include host-padding-top;
+  }
+  
+  .container{
+    padding-bottom: 35px;
+  }
+  .header {
+    padding: $content-padding;
+    @include line-bottom-light;
+  }
+  

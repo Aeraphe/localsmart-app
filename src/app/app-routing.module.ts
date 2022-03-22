@@ -11,6 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
+import { SearchResultComponent } from './pages/search-result/search-result.component';
 import { AdminGuard } from './shared/aguards/admin.guard';
 
 const routes: Routes = [
@@ -23,6 +24,11 @@ const routes: Routes = [
       {
         path: 'product-list-page/:cat',
         component: ProductListPageComponent,
+      },
+      {
+        path: 'search-result/:id',
+        data: { info: 'Resultado' },
+        component: SearchResultComponent,
       },
       {
         path: 'product-details/:id',
