@@ -21,7 +21,7 @@
 
   <ul class="search-list">
     <li
-      *ngFor="let product of productFiltred$ | async"
+      *ngFor="let product of products$ | async"
       (click)="navigate(product.id)"
       class="search-list__item"
     >
