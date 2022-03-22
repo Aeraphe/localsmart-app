@@ -53,6 +53,7 @@
 
     &__text {
       padding-left: 1rem;
+      padding-right: 5rem;
 
       &__price {
         margin-top: 1rem;
@@ -108,4 +109,10 @@
   position: absolute;
   bottom: 4.5rem;
   right: 1.2rem;
+}
+
+.mat-softdeleted{
+  position: absolute;
+  bottom: 1rem;
+  right: 10.5rem;
 }

@@ -63,11 +63,17 @@
               Vendido
             </mat-slide-toggle>
           </div>
+          <div class="mat-softdeleted">
+            <mat-checkbox class="example-margin" 
+            [(ngModel)]="product.softdeleted"
+            (change)="updateProduct(product.id,$event.checked,'softdeleted')" >Arquivar</mat-checkbox>
+          </div>
           <div class="mat-check-box">
             <mat-checkbox class="example-margin" 
             [(ngModel)]="product.promo"
             (change)="updateProduct(product.id,product.promo,'promo')" >Promoção</mat-checkbox>
           </div>
+        
         </div>
       </li>
     </ul>
