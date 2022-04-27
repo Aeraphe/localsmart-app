@@ -8,6 +8,7 @@ import {
 import { Product } from 'src/app/interfaces/product';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common'
+import { environment } from "../../../../environments/environment.prod";
 
 @Component({
   selector: 'app-product-list',
@@ -39,7 +40,7 @@ export class ProductListComponent implements OnInit, OnChanges {
 
   encodeURI = (product: Product) => {
     let baseURI = 'whatsapp://send?text=';
-    let route = 'https://localsmart-app.web.app/product-details/';
+    let route = environment.baseUrl + 'product-details/';
 
     let uri = baseURI + route + product.id;
 

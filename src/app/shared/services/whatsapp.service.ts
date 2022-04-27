@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common';
-import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
+import { environment } from "../../../environments/environment.prod";
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +41,7 @@ export class WhatsappService {
       options
     );
     let saftURI = this.createWhatsappLinkHandler(options, list);
+    console.log(saftURI)
     return saftURI;
   };
 
@@ -93,7 +94,7 @@ export class WhatsappService {
             ? this.symbols['line-breakX2']
             : this.symbols['line-break'];
 
-            let productFullDescription = "";
+          let productFullDescription = '';
           //Check if the user want to show sold product on list
           if (options.sold && product.sold) {
             productFullDescription =
@@ -109,7 +110,6 @@ export class WhatsappService {
           } else {
             productFullDescription = productDescription + retail + wholesale;
           }
-
 
           if (!product.sold) {
             let productItem = productFullDescription + extraline;
@@ -127,11 +127,9 @@ export class WhatsappService {
   };
 
   private createWhatsappLinkHandler = (options: any, list: string) => {
-    let route: string = 'https://localsmart-app.web.app/home/';
+    let route: string =  environment.baseUrl + 'home/';
     let baseURI: string = 'whatsapp://send?text=';
     let uri = baseURI + route;
-
-    console.log(uri);
 
     let saftURI: any = this.sanitizer.bypassSecurityTrustUrl(uri);
     let now = new Date();
@@ -154,8 +152,7 @@ export class WhatsappService {
       now.getFullYear() +
       this.symbols['line-breakX2'];
 
-    let extraText =
-      'Produtos com Garantia e Procedência!!!' + this.symbols['line-breakX2'];
+    let extraText = 'Venha conhecer!!!' + this.symbols['line-breakX2'];
 
     saftURI.changingThisBreaksApplicationSecurity =
       uri +
@@ -173,18 +170,21 @@ export class WhatsappService {
   createProductShareURI = (
     product: Product,
 
-    route: string = 'https://localsmart-app.web.app/product-details/'
+    route: string = environment.baseUrl + 'product-details/'
   ) => {
     let baseURI: string = 'whatsapp://send?text=';
     let uri = baseURI + route + product.id;
 
     let saftURI: any = this.sanitizer.bypassSecurityTrustUrl(uri);
     saftURI.changingThisBreaksApplicationSecurity =
-      uri +
+      baseURI +
+      route +
+      product.id +
       '%0a %0a %e2%98%85 ' +
       product.name +
       '%0a %e2%86%92 ' +
       this.currencyService.transform(product.price, 'BRL');
+
     return saftURI;
   };
 }

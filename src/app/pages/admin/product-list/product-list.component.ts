@@ -46,12 +46,13 @@ export class ProductListComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.handleGetProducts();
-    this.productCategories = await this.productService.getProductCategory();
+    
   }
 
   private handleGetProducts = () => {
-    this.productService.getAllProducts().subscribe((doc) => {
+    this.productService.getAllProducts().subscribe(async (doc) => {
       this.products = doc;
+      this.productCategories = await this.productService.getProductCategory();
       this.totalProducts = doc.length;
     });
   };

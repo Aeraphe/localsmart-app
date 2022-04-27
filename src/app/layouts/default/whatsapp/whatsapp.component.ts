@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from "../../../../environments/environment.prod";
 
 @Component({
   selector: 'app-whatsapp',
@@ -15,8 +16,8 @@ export class WhatsappComponent implements OnInit {
   }
 
   encodeURI = () => {
-    let baseURI = 'whatsapp://send?phone=5531994292827&text=';
-    let route = 'https://localsmart-app.web.app %0a %0a';
+    let baseURI = 'whatsapp://send?phone=553798268423&text=';
+    let route = environment.baseUrl + ' %0a %0a';
     let info = '*Ola!!* _Gostaria de informações sobre;_ %0a %0a';
 
     let uri = baseURI + route;

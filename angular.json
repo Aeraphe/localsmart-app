@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "smart-adv": {
+    "petiscaria-canastra": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/smart-adv",
+            "outputPath": "dist/petiscaria",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "smart-adv:build:production"
+              "browserTarget": "petiscaria-canastra:build:production"
             },
             "development": {
-              "browserTarget": "smart-adv:build:development"
+              "browserTarget": "petiscaria-canastra:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "smart-adv:build"
+            "browserTarget": "petiscaria-canastra:build"
           }
         },
         "test": {
@@ -111,13 +111,13 @@
           "options": {
             "prerender": false,
             "ssr": false,
-            "browserTarget": "smart-adv:build:production",
-            "firebaseProject": "localsmart-app",
-            "firebaseHostingSite": "localsmart-app"
+            "browserTarget": "petiscaria-canastra:build:production",
+            "firebaseProject": "petiscaria-canastra",
+            "firebaseHostingSite": "petiscaria-canastra"
           }
         }
       }
     }
   },
-  "defaultProject": "smart-adv"
+  "defaultProject": "petiscaria-canastra"
 }

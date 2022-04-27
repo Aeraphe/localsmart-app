@@ -27,10 +27,10 @@ export class ProductWhaListComponent implements OnInit {
   productWhatsappListHref = '';
 
   options: any = {
-    store: 'LocalSmart',
-    contact: '(31) 3243-1385',
-    whatsapp: '(31) 99429-2827',
-    social: '@lojalocalsmart',
+    store: 'Petiscaria Canastra',
+    contact: '---',
+    whatsapp: '(37) 9826-8423',
+    social: '@canastra.petiscaria',
     wholesale: false,
     retail: true,
     sold: false,

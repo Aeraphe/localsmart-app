@@ -1,12 +1,12 @@
 {
   "projects": {
-    "default": "localsmart-app"
+    "default": "petiscaria-canastra"
   },
   "targets": {
-    "localsmart-app": {
+    "petiscaria-canastra": {
       "hosting": {
-        "smart-adv": [
-          "localsmart-app"
+        "petiscaria": [
+          "petiscaria-canastra"
         ]
       }
     }

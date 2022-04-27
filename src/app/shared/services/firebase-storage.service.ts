@@ -10,7 +10,7 @@ export class FirebaseStorageService {
   constructor(private fireApp: FirebaseAppService) {}
 
   getStorage = (
-    sotrageLink = 'gs://localsmart-app.appspot.com'
+    sotrageLink = 'gs://petiscaria-canastra.appspot.com'
   ): FirebaseStorage => {
     return getStorage(this.fireApp.getFirebaseApp(), sotrageLink);
   };

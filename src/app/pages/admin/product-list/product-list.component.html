@@ -1,81 +1,90 @@
 <section class="product-list-section">
-  <div class="container">
+  <div *ngFor="let category of productCategories" class="container">
     <header class="header">
       <h3 class="heading-3">
-        Lista de Produtos Cadastrados ({{ totalProducts }})
+        {{ category.name | titlecase }}
       </h3>
     </header>
     <ul class="list">
-      <li *ngFor="let product of products" class="list__item">
-        <img class="list__item__img" [src]="product.url" />
-        <div class="list__item__text">
-          <h4 class="heading-4">{{ product.name }}</h4>
-          <h3 class="heading-3 list__item__text__price">
-            {{ product.price | currency: "BRL" }}
-          </h3>
-          <div
-            *ngIf="product?.payment_method"
-            class="subtitle list__item__text__payment"
-          >
-            {{ product?.payment_method }}
-          </div>
-          <div
-            *ngIf="product?.sold"
-            class="subtitle list__item__text__sold"
-          >
-            Vendido
-          </div>
-          <div
-            *ngIf="product?.condition=='false'"
-            class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
-          >
-            Novo
-          </div>
-          <div
-            *ngIf="product?.condition=='true'"
-            class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
-          >
-            Usado
-          </div>
-        </div>
-        <div class="actions-container">
-          <div class="actions">
-            <i  (click)="editProduct(product)" class="fa-solid fa-pencil actions__icon"></i>
-            <i
-              (click)="
-                openDeleteAlert({
-                  name: product.name,
-                  id: product.id,
-                  imgUrl: product.url
-                })
-              "
-              class="fa-solid fa-circle-minus actions__icon"
-            ></i>
-          </div>
-          <div class="mat-slide">
-            <mat-slide-toggle
-              class="example-margin"
-              [color]="color"
-              [checked]="product.sold"
-              [disabled]="disabled"
-              (change)="updateProduct(product.id,!product.sold,'sold')"
+      <div *ngFor="let product of products">
+        <li *ngIf="product.category == category.name" class="list__item">
+          <img class="list__item__img" [src]="product.url" />
+          <div class="list__item__text">
+            <h4 class="heading-4">{{ product.name }}</h4>
+            <h3 class="heading-3 list__item__text__price">
+              {{ product.price | currency: "BRL" }}
+            </h3>
+            <div
+              *ngIf="product?.payment_method"
+              class="subtitle list__item__text__payment"
             >
+              {{ product?.payment_method }}
+            </div>
+            <div *ngIf="product?.sold" class="subtitle list__item__text__sold">
               Vendido
-            </mat-slide-toggle>
+            </div>
+            <div
+              *ngIf="product?.condition == 'false'"
+              class="subtitle list__item__text__condition subtitle list__item__text__condition--new"
+            >
+              Novo
+            </div>
+            <div
+              *ngIf="product?.condition == 'true'"
+              class="subtitle list__item__text__condition subtitle list__item__text__condition--used"
+            >
+              Usado
+            </div>
           </div>
-          <div class="mat-softdeleted">
-            <mat-checkbox class="example-margin" 
-            [(ngModel)]="product.softdeleted"
-            (change)="updateProduct(product.id,$event.checked,'softdeleted')" >Arquivar</mat-checkbox>
+          <div class="actions-container">
+            <div class="actions">
+              <i
+                (click)="editProduct(product)"
+                class="fa-solid fa-pencil actions__icon"
+              ></i>
+              <i
+                (click)="
+                  openDeleteAlert({
+                    name: product.name,
+                    id: product.id,
+                    imgUrl: product.url
+                  })
+                "
+                class="fa-solid fa-circle-minus actions__icon"
+              ></i>
+            </div>
+            <div class="mat-slide">
+              <mat-slide-toggle
+                class="example-margin"
+                [color]="color"
+                [checked]="product.sold"
+                [disabled]="disabled"
+                (change)="updateProduct(product.id, !product.sold, 'sold')"
+              >
+                Vendido
+              </mat-slide-toggle>
+            </div>
+            <div class="mat-softdeleted">
+              <mat-checkbox
+                class="example-margin"
+                [(ngModel)]="product.softdeleted"
+                (change)="
+                  updateProduct(product.id, $event.checked, 'softdeleted')
+                "
+                >Arquivar</mat-checkbox
+              >
+            </div>
+            <div class="mat-check-box">
+              <mat-checkbox
+                class="example-margin"
+                [(ngModel)]="product.promo"
+                (change)="updateProduct(product.id, product.promo, 'promo')"
+                >Promoção</mat-checkbox
+              >
+            </div>
           </div>
-          <div class="mat-check-box">
-            <mat-checkbox class="example-margin" 
-            [(ngModel)]="product.promo"
-            (change)="updateProduct(product.id,product.promo,'promo')" >Promoção</mat-checkbox>
-          </div>
-        
-        </div>
-      </li>
+        </li>
+      </div>
     </ul>
   </div>
 </section>
